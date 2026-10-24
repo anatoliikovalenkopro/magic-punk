@@ -31,7 +31,7 @@
     "includes": "Music videos, live sessions, teasers\nSynced to the master audio\nLog & RAW footage normalization\nShot matching across cameras\nCustom looks & film emulation\nTimecoded review notes per version",
     "spec": "Send: camera originals or proxies + the final mix (for color only: locked edit as XML / EDL / AAF)",
     "price": 450,
-    "sale_price": 300,
+    "sale_price": 250,
     "price_unit": "per music video",
     "price_from": true,
     "price_note": "Up to 5 minutes, 2 revision rounds. Pick a package below.",
@@ -232,7 +232,7 @@
     "tagline": "Cut only",
     "includes": "Full edit synced to your song\n3 social cutdowns for Reels, TikTok, Shorts\n2 revision rounds",
     "price": 650,
-    "sale_price": 450,
+    "sale_price": 250,
     "featured": false,
     "order": 1
   }
@@ -246,8 +246,8 @@
     "tagline": "The finished video",
     "includes": "Full edit synced to your song\nColor grade with a custom look\n3 social cutdowns\nLUT for future shoots",
     "price": 1100,
-    "sale_price": 650,
-    "featured": true,
+    "sale_price": 500,
+    "featured": false,
     "order": 2
   }
 },
@@ -260,7 +260,7 @@
     "tagline": "Grade only",
     "includes": "Grade of your locked edit\nShot matching across cameras\nLUT for future shoots",
     "price": 450,
-    "sale_price": 300,
+    "sale_price": 250,
     "featured": false,
     "order": 3
   }
