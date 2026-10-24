@@ -60,21 +60,71 @@
   {% block content %}{% endblock %}
 
   <section class="contact" id="contact" aria-labelledby="c-h">
-    <div class="eyebrow" style="color: var(--ink)">Contact</div>
-    <h2 id="c-h">Start something loud</h2>
-    <div class="contact-me">
-      <img src="{% static 'portfolio/img/me-face.jpg' %}?v={{ css_version }}" width="72" height="72" alt="">
-      <p>Send a link to your demo or footage, your release date and what you need. You’ll hear back from me within two days.</p>
+    <div class="contact-intro">
+      <div class="eyebrow" style="color: var(--ink)">Contact</div>
+      <h2 id="c-h">Start something loud</h2>
+      <div class="contact-me">
+        <img src="{% static 'portfolio/img/me-face.jpg' %}?v={{ css_version }}" width="72" height="72" alt="">
+        <p>Tell me about your project. You’ll hear back from me within two days.</p>
+      </div>
+      <p class="contact-alt">Prefer email?</p>
+      <div class="mail">
+        <code id="email">{{ contact_email }}</code>
+        <button id="copy" type="button">Copy email</button>
+      </div>
+      <div class="socials">
+        {% for name, url in social_links %}
+        <a href="{{ url }}" target="_blank" rel="noopener">{{ name }} ↗</a>
+        {% endfor %}
+      </div>
     </div>
-    <div class="mail">
-      <code id="email">{{ contact_email }}</code>
-      <button id="copy" type="button">Copy email</button>
-    </div>
-    <div class="socials">
-      {% for name, url in social_links %}
-      <a href="{{ url }}" target="_blank" rel="noopener">{{ name }} ↗</a>
-      {% endfor %}
-    </div>
+
+    {# Sent by JavaScript to Web3Forms, which emails it to you (the site is static, so there's no server of our own) #}
+    <form class="contact-form" id="contact-form" data-endpoint="https://api.web3forms.com/submit" data-key="{{ form_access_key }}" novalidate>
+      <div class="field-row">
+        <label class="field">
+          <span>Your name</span>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        </label>
+      </div>
+      <label class="field">
+        <span>What do you need?</span>
+        <select id="cf-service" name="service">
+          <option value="">Choose a service</option>
+          <optgroup label="Video production">
+            {% for s in nav_video %}<option value="{{ s.name }}">{{ s.name }}</option>{% endfor %}
+          </optgroup>
+          <optgroup label="Music production">
+            {% for s in nav_music %}<option value="{{ s.name }}">{{ s.name }}</option>{% endfor %}
+          </optgroup>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </label>
+      <div class="field-row">
+        <label class="field">
+          <span>Link to your music or footage <small>(optional)</small></span>
+          <input id="cf-link" name="link" type="url" placeholder="Spotify, YouTube, Dropbox…">
+        </label>
+        <label class="field">
+          <span>Release date <small>(optional)</small></span>
+          <input id="cf-date" name="release_date" type="text" placeholder="e.g. March 2027">
+        </label>
+      </div>
+      <label class="field">
+        <span>Tell me about it</span>
+        <textarea id="cf-message" name="message" rows="5" required placeholder="The band, the idea, the budget, anything that helps."></textarea>
+      </label>
+      {# Spam trap: people never see this field, bots fill it in #}
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-foot">
+        <button class="form-send" type="submit">Send message</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
   </section>
 
   <footer>

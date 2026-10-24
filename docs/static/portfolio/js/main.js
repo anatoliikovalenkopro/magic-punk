@@ -356,6 +356,75 @@ function selectEmail(btn) {
   const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press Ctrl+C";
 }
 
+/* ---------- contact form (sent to Web3Forms, which emails it to you) ---------- */
+const form = document.getElementById("contact-form");
+if (form) {
+  const status = document.getElementById("form-status");
+  const sendBtn = form.querySelector(".form-send");
+  const say = (text, ok) => { status.textContent = text; status.style.color = ok ? "var(--ink)" : "#3b0018"; };
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    // check the required fields ourselves so the messages match the site
+    let firstBad = null;
+    form.querySelectorAll("[required]").forEach(input => {
+      const bad = !input.value.trim() || (input.type === "email" && !input.checkValidity());
+      input.closest(".field").classList.toggle("invalid", bad);
+      if (bad && !firstBad) firstBad = input;
+    });
+    if (firstBad) { say("Please fill in your name, a valid email and a message."); firstBad.focus(); return; }
+
+    const key = form.dataset.key;
+    const email = document.getElementById("email").textContent;
+    const data = Object.fromEntries(new FormData(form));
+    if (data.botcheck) return;  // a bot filled the hidden field
+    delete data.botcheck;
+
+    if (!key) {
+      // No form service key yet: open the visitor's email app with everything filled in
+      const body = [
+        `Name: ${data.name}`, `Email: ${data.email}`, `Service: ${data.service || "-"}`,
+        `Link: ${data.link || "-"}`, `Release date: ${data.release_date || "-"}`, "", data.message,
+      ].join("\n");
+      location.href = `mailto:${email}?subject=${encodeURIComponent(`Magic Punk inquiry from ${data.name}`)}&body=${encodeURIComponent(body)}`;
+      say(`Your email app should open with the message ready. If nothing happened, email me at ${email}.`, true);
+      return;
+    }
+    Object.assign(data, {
+      access_key: key,
+      subject: `New Magic Punk inquiry${data.service ? `: ${data.service}` : ""} from ${data.name}`,
+      from_name: "Magic Punk website",
+      replyto: data.email,
+    });
+
+    sendBtn.disabled = true; sendBtn.textContent = "Sending…"; say("");
+    try {
+      const res = await fetch(form.dataset.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json.success === false) throw new Error(json.message || res.status);
+      form.reset();
+      say("Thanks! Your message is on its way. I’ll get back to you within two days.", true);
+    } catch (err) {
+      say(`Something went wrong sending the form. Please email me at ${email}.`);
+    } finally {
+      sendBtn.disabled = false; sendBtn.textContent = "Send message";
+    }
+  });
+
+  // clear the red outline as soon as a field is fixed
+  form.addEventListener("input", e => e.target.closest(".field")?.classList.remove("invalid"));
+
+  // "Book …" buttons on the service pages pre-select that service in the form
+  document.querySelectorAll(".svc-ask[data-service]").forEach(a => a.addEventListener("click", () => {
+    const select = document.getElementById("cf-service");
+    if ([...select.options].some(o => o.value === a.dataset.service)) select.value = a.dataset.service;
+  }));
+}
+
 /* ---------- home: door previews ---------- */
 const DEFAULT_CLIP = { artist: "Magic Punk", hue: 330, look: "tape" };
 const videoDoor = document.querySelector('[data-door="video"]');

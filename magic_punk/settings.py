@@ -159,6 +159,10 @@ SPECIAL_NOTE = 'Lower prices on every service while I build the roster. Book now
 # Your real name, shown in the About section and contact block. Leave '' to hide it.
 OWNER_NAME = 'Anatolii Kovalenko'
 
+# Contact form: free access key from https://web3forms.com (the key is public by design;
+# messages go to the email address the key was created with).
+FORM_ACCESS_KEY = ''
+
 # Contact details shown on the site
 CONTACT_EMAIL = 'hello@magicpunkstudio.com'  # set up forwarding to your Gmail at your registrar
 SOCIAL_LINKS = [

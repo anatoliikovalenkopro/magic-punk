@@ -25,7 +25,7 @@
     </div>
     {% endif %}
     {% if s.price_note %}<p class="price-note">{{ s.price_note }}</p>{% endif %}
-    <a class="svc-ask" href="#contact">{% if s.mode == 'referral' %}Ask for a recommendation{% elif s.slug == 'producer' %}Book a free call{% else %}Book {{ s.name|lower }}{% endif %} →</a>
+    <a class="svc-ask" href="#contact" data-service="{{ s.name }}">{% if s.mode == 'referral' %}Ask for a recommendation{% elif s.slug == 'producer' %}Book a free call{% else %}Book {{ s.name|lower }}{% endif %} →</a>
   </div>
 
   {% with packages=s.packages.all %}

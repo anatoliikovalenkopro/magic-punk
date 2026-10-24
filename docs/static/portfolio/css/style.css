@@ -295,6 +295,32 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
 .about-text .credits { font: 13px/1.6 var(--f-mono); color: var(--bone); padding-top: 12px; border-top: 1px dashed var(--line); }
 .about-text .credits span { color: var(--dim); text-transform: uppercase; letter-spacing: .1em; margin-right: 8px; }
 
+/* contact: intro left, form right */
+.contact { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 24px clamp(24px, 4vw, 56px); align-items: start; }
+.contact-intro { min-width: 0; }
+.contact-intro h2 { font-size: clamp(32px, 4.2vw, 56px); overflow-wrap: break-word; }
+.contact .contact-alt { margin: 0 0 8px; font: 500 12px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; }
+.contact .mail code { font-size: clamp(14px, 1.6vw, 18px); }
+.contact-form { display: grid; gap: 14px; min-width: 0; }
+.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field > span { font: 500 11px/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--ink); }
+.field small { text-transform: none; letter-spacing: 0; opacity: .7; }
+.field input, .field select, .field textarea {
+  width: 100%; font: 16px/1.4 var(--f-body); color: var(--bone); background: var(--ink);
+  border: 2px solid var(--ink); padding: 11px 12px; border-radius: 0; color-scheme: dark;
+}
+.field textarea { resize: vertical; min-height: 120px; }
+.field input::placeholder, .field textarea::placeholder { color: var(--dim); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--bone); box-shadow: 4px 4px 0 var(--ink); }
+.field.invalid input, .field.invalid textarea { border-color: var(--sulfur); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.form-send { background: var(--ink); color: var(--spell); border: 2px solid var(--ink); padding: 14px 22px; font: 800 14px/1 var(--f-head); font-stretch: 120%; text-transform: uppercase; letter-spacing: .04em; }
+.form-send:hover { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+.form-send:disabled { opacity: .6; cursor: wait; }
+.contact .form-status { margin: 0; font-size: 15px; font-weight: 600; max-width: none; }
+
 /* contact: small photo */
 .contact-me { display: flex; align-items: center; gap: 16px; margin: 16px 0 24px; }
 .contact-me img { width: 72px; height: 72px; border-radius: 50%; border: 3px solid var(--ink); flex-shrink: 0; object-fit: cover; }
@@ -370,7 +396,7 @@ h2 { font-size: clamp(32px, 5vw, 60px); }
   .mobile-menu { display: block; }
   .doors { grid-template-columns: minmax(0, 1fr); }
   .svc-row { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  .how, .fit-grid, .brief, .packages, .svc-inc, .about { grid-template-columns: minmax(0, 1fr); }
+  .how, .fit-grid, .brief, .packages, .svc-inc, .about, .contact, .field-row { grid-template-columns: minmax(0, 1fr); }
   .svc-row { grid-template-columns: minmax(0, 1fr); }
   .svc-side { padding-left: 0; border-left: 0; border-top: 1px dashed var(--line); padding-top: 12px; }
   .packages { gap: 22px; }

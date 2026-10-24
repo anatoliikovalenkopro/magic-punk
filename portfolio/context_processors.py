@@ -28,5 +28,6 @@ def site(request):
         'special_label': settings.SPECIAL_LABEL,
         'special_note': settings.SPECIAL_NOTE,
         'contact_email': settings.CONTACT_EMAIL,
+        'form_access_key': settings.FORM_ACCESS_KEY,
         'social_links': settings.SOCIAL_LINKS,
     }
