@@ -1,0 +1,79 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Video production · Magic Punk{% endblock %}
+{% block description %}Music videos, concert videos, studio live sessions, remote editing and color grading in Alberta by Magic Punk.{% endblock %}
+
+{% block content %}
+<header class="page-hero">
+  <div class="eyebrow">Magic Punk · Video</div>
+  <h1>Video <em>production</em></h1>
+  <p class="lede">Music videos, concert films and studio live sessions, plus editing and color for footage you shot yourself. From one person who speaks musician, with partner crews when the show gets big.</p>
+  <nav class="chips" aria-label="Video services">
+    <a href="#reel">Reel</a>
+    {% for s in services %}<a href="#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+  </nav>
+</header>
+
+<section class="block" id="reel" aria-labelledby="reel-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Reel</div>
+      <h2 id="reel-h">Moving <em>pictures</em></h2>
+    </div>
+    <p>Pick a cue to load it into the monitor.</p>
+  </div>
+  {% if not videos_data %}<p class="empty">No videos yet. Add one in the admin.</p>{% endif %}
+  <div class="reel">
+    <div>
+      <div class="screen" id="screen">
+        <canvas id="monitor"></canvas>
+        <div class="hud"><span class="rec" id="tc">00:00:00:00</span><span id="fmt">4K · 24 FPS · REC.709</span></div>
+      </div>
+      <div class="now">
+        <div>
+          <h3 id="v-title">—</h3>
+          <div class="meta" id="v-meta">—</div>
+        </div>
+        <div class="actions">
+          <a class="ext" id="v-link" href="#" target="_blank" rel="noopener" hidden>Watch full video ↗</a>
+          <button class="icon-btn" id="v-toggle" type="button" aria-label="Pause preview"></button>
+        </div>
+      </div>
+    </div>
+    <ul class="cues" id="cues"></ul>
+  </div>
+</section>
+
+<section class="block" id="services" aria-labelledby="svc-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Services</div>
+      <h2 id="svc-h">What I <em>shoot &amp; cut</em></h2>
+    </div>
+    <p>Book the whole production, or only the part you need. Everything marked Remote works from anywhere in the world. Prices in CAD, plus 5% GST.</p>
+  </div>
+  <aside class="brief">
+    <div>
+      <h3>Crew that fits the idea</h3>
+      <ul class="brief-list">
+        <li><strong>Solo</strong> just me on camera, light and edit</li>
+        <li><strong>Small crew</strong> me + 1–3 partners: 2nd camera, gaffer, makeup</li>
+        <li><strong>Full team</strong> partner DP, lighting, art, drone and producer</li>
+      </ul>
+    </div>
+    <div>
+      <h3>How video pricing works</h3>
+      <p>Editing and color grading have fixed prices. Music videos are quoted around your budget: gear rental, crew, locations, cast, travel and art. Small budgets welcome.</p>
+    </div>
+  </aside>
+  <div class="svc-list">
+    {% for s in services %}{% include "portfolio/_service.html" %}{% endfor %}
+  </div>
+  <p class="cross-note"><strong>Need the audio too?</strong> I can film your live session and also record and mix it. See <a href="{% url 'portfolio:music' %}#recording">Music production</a> and ask about both.</p>
+  {% include "portfolio/_remote_steps.html" with step1="Your song, references, footage notes and release date." step3="A private link to watch the cut, with timecoded comments." %}
+</section>
+{% endblock %}
+
+{% block data %}
+{{ videos_data|json_script:"videos-data" }}
+{% endblock %}

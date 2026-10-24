@@ -1,0 +1,57 @@
+{% load humanize %}{# One service block. Used by video.html and music.html #}
+<article class="svc-row{% if s.mode == 'referral' %} referral{% endif %}" id="{{ s.slug }}">
+  <div class="svc-main">
+    <div class="svc-title">
+      <h3>{{ s.name }}</h3>
+      <span class="mode mode-{{ s.mode }}">{{ s.get_mode_display }}</span>
+    </div>
+    <p>{{ s.summary }}</p>
+    <ul class="svc-inc">
+      {% for item in s.includes_list %}<li>{{ item }}</li>{% endfor %}
+    </ul>
+    {% if s.spec %}<div class="spec">{{ s.spec }}</div>{% endif %}
+  </div>
+
+  <div class="svc-side">
+    {% if s.price is not None %}
+    <div class="price">
+      {% if s.on_sale and special_label %}<span class="price-tag">{{ special_label }}</span>{% endif %}
+      <div class="price-line">
+        {% if s.price_from %}<span class="from">from</span>{% endif %}
+        {% if s.on_sale %}<s class="was" aria-label="Regular price">${{ s.price|intcomma }}</s><span class="now">${{ s.sale_price|intcomma }}</span>
+        {% else %}<span class="now">${{ s.price|intcomma }}</span>{% endif %}
+      </div>
+      <span class="unit">CAD {{ s.price_unit }}</span>
+    </div>
+    {% endif %}
+    {% if s.price_note %}<p class="price-note">{{ s.price_note }}</p>{% endif %}
+    <a class="svc-ask" href="#contact">{% if s.mode == 'referral' %}Ask for a recommendation{% elif s.slug == 'producer' %}Book a free call{% else %}Book {{ s.name|lower }}{% endif %} →</a>
+  </div>
+
+  {% with packages=s.packages.all %}
+  {% if packages %}
+  <div class="packages">
+    {% for p in packages %}
+    <div class="pkg{% if p.featured %} featured{% endif %}">
+      <div class="pkg-top">
+        <h4>{{ p.name }}{% if p.featured %} <span class="pkg-flag">Best value</span>{% endif %}</h4>
+        <div class="price-line">
+          {% if p.on_sale %}<s class="was" aria-label="Regular price">${{ p.price|intcomma }}</s><span class="now">${{ p.sale_price|intcomma }}</span>
+          {% else %}<span class="now">${{ p.price|intcomma }}</span>{% endif %}
+        </div>
+      </div>
+      <div class="pkg-tagline">{{ p.tagline }}</div>
+      <p class="pkg-inc">{{ p.includes_list|join:" · " }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  {% if s.addons %}
+  <div class="addons">
+    <span class="addons-label">Add-ons</span>
+    {% for name, price in s.addons_list %}<span class="addon">{{ name }} <strong>{{ price }}</strong></span>{% endfor %}
+  </div>
+  {% endif %}
+</article>

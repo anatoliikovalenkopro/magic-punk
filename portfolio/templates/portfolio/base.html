@@ -1,0 +1,88 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Magic Punk{% if owner_name %} · {{ owner_name }}{% endif %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}Magic Punk by {{ owner_name }}: music videos, concert videos, recording and mixing in Alberta.{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Rubik+Wet+Paint&display=swap">
+  <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}?v={{ css_version }}">
+</head>
+<body>
+{% if special_label %}
+<div class="promo">
+  <div class="wrap"><strong>{{ special_label }}</strong> <span>{{ special_note }}</span></div>
+</div>
+{% endif %}
+<div class="wrap">
+  <header class="nav">
+    <a class="mark" href="{% url 'portfolio:home' %}">Magic Punk</a>
+
+    {# Desktop: two dropdown menus #}
+    <nav class="menu" aria-label="Main">
+      <div class="dd{% if page == 'video' %} active{% endif %}">
+        <a class="dd-top" href="{% url 'portfolio:video' %}">Video production <span aria-hidden="true">▾</span></a>
+        <div class="dd-panel">
+          <a class="dd-head" href="{% url 'portfolio:video' %}#reel">Watch the reel <span aria-hidden="true">→</span></a>
+          {% for s in nav_video %}
+          <a href="{% url 'portfolio:video' %}#{{ s.slug }}">{{ s.name }}<small class="mode mode-{{ s.mode }}">{{ s.get_mode_display }}</small></a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="dd{% if page == 'music' %} active{% endif %}">
+        <a class="dd-top" href="{% url 'portfolio:music' %}">Music production <span aria-hidden="true">▾</span></a>
+        <div class="dd-panel">
+          {% if has_tracks %}<a class="dd-head" href="{% url 'portfolio:music' %}#mixes">Hear the mixes <span aria-hidden="true">→</span></a>
+          {% else %}<a class="dd-head" href="{% url 'portfolio:music' %}#services">All music services <span aria-hidden="true">→</span></a>{% endif %}
+          {% for s in nav_music %}
+          <a href="{% url 'portfolio:music' %}#{{ s.slug }}">{{ s.name }}<small class="mode mode-{{ s.mode }}">{{ s.get_mode_display }}</small></a>
+          {% endfor %}
+        </div>
+      </div>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </nav>
+
+    {# Phone: one menu button #}
+    <details class="mobile-menu">
+      <summary>Menu</summary>
+      <div class="mm-panel">
+        <a class="mm-title" href="{% url 'portfolio:video' %}">Video production</a>
+        {% for s in nav_video %}<a href="{% url 'portfolio:video' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        <a class="mm-title" href="{% url 'portfolio:music' %}">Music production</a>
+        {% for s in nav_music %}<a href="{% url 'portfolio:music' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        <a class="mm-title" href="#contact">Contact</a>
+      </div>
+    </details>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <section class="contact" id="contact" aria-labelledby="c-h">
+    <div class="eyebrow" style="color: var(--ink)">Contact</div>
+    <h2 id="c-h">Start something loud</h2>
+    <div class="contact-me">
+      <img src="{% static 'portfolio/img/me-face.jpg' %}?v={{ css_version }}" width="72" height="72" alt="">
+      <p>Send a link to your demo or footage, your release date and what you need. You’ll hear back from me within two days.</p>
+    </div>
+    <div class="mail">
+      <code id="email">{{ contact_email }}</code>
+      <button id="copy" type="button">Copy email</button>
+    </div>
+    <div class="socials">
+      {% for name, url in social_links %}
+      <a href="{{ url }}" target="_blank" rel="noopener">{{ name }} ↗</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <footer>
+    <span>© {% now "Y" %} Magic Punk{% if owner_name %} · {{ owner_name }}{% endif %}</span>
+    <span><a href="{% url 'portfolio:video' %}">Video production</a> · <a href="{% url 'portfolio:music' %}">Music production</a></span>
+  </footer>
+</div>
+{% block data %}{% endblock %}
+<script src="{% static 'portfolio/js/main.js' %}?v={{ js_version }}"></script>
+</body>
+</html>

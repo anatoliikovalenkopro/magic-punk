@@ -1,0 +1,67 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block content %}
+<header class="hero" id="top">
+  <div class="sticker">Now booking<br>winter ’26</div>
+  <div class="eyebrow">Video production · Music production</div>
+  <h1 aria-label="Magic Punk"><span>Magic</span><span>Punk</span></h1>
+  <div class="row">
+    <p class="lede">Music videos, recording and mixing for bands and artists, from rock and punk to country and folk. Across Alberta or online.</p>
+  </div>
+  <canvas class="scope" id="scope" aria-hidden="true"></canvas>
+</header>
+
+<section class="doors" aria-label="What I do">
+  <a class="door" href="{% url 'portfolio:video' %}">
+    <canvas class="door-art" data-door="video" aria-hidden="true"></canvas>
+    <div class="door-body">
+      <div class="eyebrow">Camera · Edit · Color</div>
+      <h2>Video <em>production</em></h2>
+      <ul>
+        {% for s in nav_video %}<li>{{ s.name }}{% if s.mode == 'remote' %} <small class="mode mode-remote">Remote</small>{% endif %}</li>{% endfor %}
+      </ul>
+      <span class="btn primary">Watch the reel</span>
+    </div>
+  </a>
+  <a class="door" href="{% url 'portfolio:music' %}">
+    <canvas class="door-art" data-door="music" aria-hidden="true"></canvas>
+    <div class="door-body">
+      <div class="eyebrow">Record · Mix · Release</div>
+      <h2>Music <em>production</em></h2>
+      <ul>
+        {% for s in nav_music %}<li>{{ s.name }}{% if s.mode == 'remote' %} <small class="mode mode-remote">Remote</small>{% elif s.mode == 'referral' %} <small class="mode mode-referral">I’ll recommend</small>{% endif %}</li>{% endfor %}
+      </ul>
+      <span class="btn primary">{% if has_tracks %}Hear the mixes{% else %}See music services{% endif %}</span>
+    </div>
+  </a>
+</section>
+
+<section class="block about" aria-labelledby="about-h">
+  <figure class="about-photo">
+    <img src="{% static 'portfolio/img/me.jpg' %}?v={{ css_version }}" width="1400" height="934"
+         alt="{% if owner_name %}{{ owner_name }}{% else %}The person behind Magic Punk{% endif %} recording guitar in the studio">
+  </figure>
+  <div class="about-text">
+    <div class="eyebrow">Who you’ll work with</div>
+    <h2 id="about-h">{% if owner_name %}Hi, I’m <em>{{ owner_name }}</em>{% else %}The person behind <em>Magic Punk</em>{% endif %}</h2>
+    <p>I’m a musician who ended up behind the camera and the mixing desk. I work with bands and artists across Alberta, from the first demo to the music video.</p>
+    <p>No account managers, no middlemen: you talk to me from the first call to the final file.</p>
+    {% if videos_data %}
+    <p class="credits"><span>Worked with</span> {% for v in videos_data %}{{ v.artist }}{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="block fit" aria-labelledby="fit-h">
+  <div class="fit-head">
+    <div class="eyebrow">Who I work with</div>
+    <h2 id="fit-h">Made for <em>live music</em></h2>
+    <p>Bands, duos and solo artists. I record, mix and film music that people play, in the studio or on stage.</p>
+  </div>
+  <p class="genre-line">Rock · Punk · Alternative · Metal · Indie · Country · Folk · Blues · Jazz · Singer&#8209;songwriters</p></section>
+{% endblock %}
+
+{% block data %}
+{{ videos_data|json_script:"videos-data" }}
+{% endblock %}

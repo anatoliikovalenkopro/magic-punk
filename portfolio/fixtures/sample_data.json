@@ -1,0 +1,34 @@
+[
+{
+  "model": "portfolio.video",
+  "pk": 5,
+  "fields": {
+    "title": "Mythic Time",
+    "artist": "Mallory Chipman",
+    "role": "Music video",
+    "year": 2025,
+    "runtime": "4:05",
+    "video_file": "",
+    "link": "https://www.youtube.com/watch?v=8cBDGLc0bW0",
+    "hue": 330,
+    "look": "tape",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.video",
+  "pk": 6,
+  "fields": {
+    "title": "In the Dark",
+    "artist": "Mikayla Bortscher",
+    "role": "Music video",
+    "year": 2025,
+    "runtime": "3:17",
+    "video_file": "",
+    "link": "https://www.youtube.com/watch?v=bYtKVmn1HDw",
+    "hue": 330,
+    "look": "tape",
+    "order": 2
+  }
+}
+]

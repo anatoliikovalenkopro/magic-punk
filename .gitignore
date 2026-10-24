@@ -1,0 +1,22 @@
+# Python / virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Local data (your content is backed up in portfolio/fixtures/*.json)
+db.sqlite3
+media/
+staticfiles/
+
+# Secrets and local settings
+.env
+
+# Editor / tool folders
+.claude/
+.vscode/
+.idea/
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store

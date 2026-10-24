@@ -1,0 +1,88 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Music production · Magic Punk{% endblock %}
+{% block description %}Recording and mixing in Alberta for bands and artists: rock, punk, country, folk and more. Pre-production, studio recording, mixing and online mixing by Magic Punk.{% endblock %}
+
+{% block content %}
+<header class="page-hero">
+  <div class="eyebrow">Magic Punk · Music</div>
+  <h1>Music <em>production</em></h1>
+  <p class="lede">Records for bands and artists, from rock and punk to country and folk. From the first demo to a finished mix: pre-production, recording and mixing, in the room or online. For mastering, I’ll point you to people I trust.</p>
+  <nav class="chips" aria-label="Music services">
+    {% if has_tracks %}<a href="#mixes">Mixes</a>{% endif %}
+    <a href="#studios">Studios &amp; rig</a>
+    {% for s in services %}<a href="#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+  </nav>
+</header>
+
+{% if has_tracks %}
+<section class="block" id="mixes" aria-labelledby="mixes-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Session sheet</div>
+      <h2 id="mixes-h">Loud <em>&amp; clear</em></h2>
+    </div>
+    <p>Hit play, then flip between the rough and the mix.</p>
+  </div>
+  <div class="ab-note">
+    <div class="ab" role="group" aria-label="Compare rough and mix">
+      <button type="button" data-ab="rough" aria-pressed="false">Rough</button>
+      <button type="button" data-ab="mix" aria-pressed="true">Mix</button>
+    </div>
+    <p><strong>A/B it.</strong> Rough is the session as it arrived: unbalanced, dry, everything in the middle. Mix is after balance, EQ, glue compression, width and space.</p>
+  </div>
+  {% if not tracks_data %}<p class="empty">No tracks yet. Add one in the admin.</p>{% endif %}
+  <div class="sheet" role="list">
+    <div class="sheet-head" aria-hidden="true"><span></span><span>Song</span><span>Waveform</span><span>BPM</span><span>Key</span><span>LUFS</span></div>
+    <div id="tracks"></div>
+  </div>
+  <div class="meter">
+    <span id="m-name">Stopped</span>
+    <div class="bar"><div class="fill" id="m-fill"></div></div>
+    <span id="m-db">−∞ dBFS</span>
+  </div>
+</section>
+{% endif %}
+
+<section class="block" id="studios" aria-labelledby="studios-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Where &amp; how I work</div>
+      <h2 id="studios-h">Studios <em>&amp; rig</em></h2>
+    </div>
+  </div>
+  <div class="how">
+    <div class="how-card">
+      <h3>Studios across Alberta</h3>
+      <p>I don’t lock you into one room. I record in partner studios across Alberta and pick the one that suits the song: a big live room for drums that need air, a vocal booth for a quiet take, or a rehearsal space when the band sounds best playing together.</p>
+      <p class="how-note">You pay the studio’s room rate, and I book it and set it up. Mixing happens in my own room.</p>
+    </div>
+    <div class="how-card">
+      <h3>The mixing chain</h3>
+      <p>Every session runs in <strong>Pro Tools</strong>, the studio standard, so sessions move between rooms without surprises. Mixes go through <strong>UAD plugins</strong>: emulations of classic consoles, tape machines and vintage compressors, the tools behind the records you grew up on.</p>
+      <ul class="rig">
+        <li>Pro Tools</li><li>UAD plugins</li><li>Console &amp; tape emulation</li><li>Vintage compressors &amp; EQs</li><li>Reference monitoring</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="services" aria-labelledby="svc-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Services</div>
+      <h2 id="svc-h">What I <em>record &amp; mix</em></h2>
+    </div>
+    <p>Book one step or take the song all the way through. Online mixing works from anywhere in the world. Prices in CAD, plus 5% GST.</p>
+  </div>
+  <div class="svc-list">
+    {% for s in services %}{% include "portfolio/_service.html" %}{% endfor %}
+  </div>
+  <p class="cross-note"><strong>Want it on video?</strong> I can record and mix your live session and also film it. See <a href="{% url 'portfolio:video' %}#live-session">Video production</a> and ask about both.</p>
+  {% include "portfolio/_remote_steps.html" with step1="Your demo, reference tracks and release date." step3="A private link to the mix, with the rough to compare." %}
+</section>
+{% endblock %}
+
+{% block data %}
+{{ tracks_data|json_script:"tracks-data" }}
+{% endblock %}
