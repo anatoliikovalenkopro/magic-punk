@@ -54,7 +54,7 @@ class Command(BaseCommand):
             self.stdout.write('  media  -> media/')
 
         # 4. GitHub Pages extras: custom domain + skip Jekyll processing
-        (out / 'CNAME').write_text(settings.SITE_DOMAIN + '\n', encoding='utf-8')
+        (out / 'CNAME').write_text(settings.SITE_DOMAIN, encoding='utf-8')  # same format GitHub writes
         (out / '.nojekyll').write_text('', encoding='utf-8')
 
         self.stdout.write(self.style.SUCCESS(f'Built {len(PAGES)} pages into {out}'))
