@@ -140,6 +140,26 @@
   }
 },
 {
+  "model": "portfolio.service",
+  "pk": 14,
+  "fields": {
+    "category": "music",
+    "name": "Recording",
+    "slug": "recording",
+    "mode": "in_person",
+    "summary": "I record in partner studios across Alberta and book the room that fits your sound and budget: a big live room for drums, a small booth for vocals, or a rehearsal space for a raw live take.",
+    "includes": "Studio booking across Alberta\nFull-band live tracking\nVocals, guitars, bass, overdubs\nDrum recording & editing\nSessions delivered as Pro Tools sessions or stems",
+    "spec": "Records: 24-bit / 48 kHz · labeled, consolidated stems",
+    "price": 65,
+    "sale_price": 50,
+    "price_unit": "per hour, engineer",
+    "price_from": false,
+    "price_note": "Studio room is billed separately at the studio’s rate (about $40–$100/hr in Alberta).",
+    "addons": "",
+    "order": 2
+  }
+},
+{
   "model": "portfolio.package",
   "pk": 13,
   "fields": {
