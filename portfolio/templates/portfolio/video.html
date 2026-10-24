@@ -50,7 +50,7 @@
       <div class="eyebrow">Services</div>
       <h2 id="svc-h">What I <em>shoot &amp; cut</em></h2>
     </div>
-    <p>Book the whole production, or only the part you need. Everything marked Remote works from anywhere in the world. Prices in CAD, plus 5% GST.</p>
+    <p>Book the whole production, or only the part you need. Everything marked Remote works from anywhere in the world. Prices in CAD.</p>
   </div>
   <aside class="brief">
     <div>
@@ -69,7 +69,7 @@
   <div class="svc-list">
     {% for s in services %}{% include "portfolio/_service.html" %}{% endfor %}
   </div>
-  <p class="cross-note"><strong>Need the audio too?</strong> I can film your live session and also record and mix it. See <a href="{% url 'portfolio:music' %}#recording">Music production</a> and ask about both.</p>
+  <p class="cross-note"><strong>Need the audio too?</strong> I can film your live session and also mix it. See <a href="{% url 'portfolio:music' %}#mixing">Music production</a> and ask about both.</p>
   {% include "portfolio/_remote_steps.html" with step1="Your song, references, footage notes and release date." step3="A private link to watch the cut, with timecoded comments." %}
 </section>
 {% endblock %}

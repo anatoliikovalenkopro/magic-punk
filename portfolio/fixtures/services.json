@@ -24,79 +24,19 @@
   "pk": 2,
   "fields": {
     "category": "video",
-    "name": "Remote editing",
-    "slug": "remote-editing",
+    "name": "Editing & color grading",
+    "slug": "editing-color",
     "mode": "remote",
-    "summary": "Shot it yourself? Send the footage and get back a cut that moves with the song.",
-    "includes": "Music videos, live sessions, teasers\nSync to the master audio\nCutdowns for Reels, TikTok, Shorts\nTimecoded review notes per version",
-    "spec": "Send: camera originals or proxies + the final mix",
-    "price": 650,
-    "sale_price": 450,
-    "price_unit": "per music video",
-    "price_from": true,
-    "price_note": "Up to 5 minutes, 2 revision rounds, 3 social cutdowns included.",
-    "addons": "",
-    "order": 5
-  }
-},
-{
-  "model": "portfolio.service",
-  "pk": 3,
-  "fields": {
-    "category": "video",
-    "name": "Color grading",
-    "slug": "color-grading",
-    "mode": "remote",
-    "summary": "A look that belongs to your song, consistent from the first shot to the last.",
-    "includes": "Log & RAW footage normalization\nShot matching across cameras\nCustom looks & film emulation\nGraded master + LUT for future shoots",
-    "spec": "Send: locked edit (XML / EDL / AAF) + source media",
+    "summary": "Shot it yourself? Send the footage and get back a cut that moves with the song, with a look that belongs to it, consistent from the first shot to the last. Book the edit, the grade, or both.",
+    "includes": "Music videos, live sessions, teasers\nSynced to the master audio\nLog & RAW footage normalization\nShot matching across cameras\nCustom looks & film emulation\nTimecoded review notes per version",
+    "spec": "Send: camera originals or proxies + the final mix (for color only: locked edit as XML / EDL / AAF)",
     "price": 450,
     "sale_price": 300,
     "price_unit": "per music video",
     "price_from": true,
-    "price_note": "Up to 5 minutes. Add a LUT for future shoots for free.",
+    "price_note": "Up to 5 minutes, 2 revision rounds. Pick a package below.",
     "addons": "",
-    "order": 6
-  }
-},
-{
-  "model": "portfolio.service",
-  "pk": 5,
-  "fields": {
-    "category": "music",
-    "name": "Pre-production",
-    "slug": "pre-production",
-    "mode": "in_person",
-    "summary": "Before you pay for studio time: tighten the song, lock the tempo and plan the session.",
-    "includes": "Arrangement & song structure\nTempo maps & click tracks\nGuide demos\nSession & gear planning",
-    "spec": "Delivers: demo bounce + tempo map + session plan",
-    "price": 60,
-    "sale_price": 45,
-    "price_unit": "per hour",
-    "price_from": false,
-    "price_note": "Most songs need 2–4 hours.",
-    "addons": "",
-    "order": 1
-  }
-},
-{
-  "model": "portfolio.service",
-  "pk": 6,
-  "fields": {
-    "category": "music",
-    "name": "Recording",
-    "slug": "recording",
-    "mode": "in_person",
-    "summary": "I record in partner studios across Alberta and book the room that fits your sound and budget: a big live room for drums, a small booth for vocals, or a rehearsal space for a raw live take.",
-    "includes": "Studio booking across Alberta\nFull-band live tracking\nVocals, guitars, bass, overdubs\nDrum recording & editing\nSessions delivered as Pro Tools sessions or stems",
-    "spec": "Records: 24-bit / 48 kHz · labeled, consolidated stems",
-    "price": 65,
-    "sale_price": 50,
-    "price_unit": "per hour, engineer",
-    "price_from": false,
-    "price_note": "Studio room is billed separately at the studio’s rate (about $40–$100/hr in Alberta).",
-    "addons": "",
-    "order": 2
+    "order": 5
   }
 },
 {
@@ -106,37 +46,17 @@
     "category": "music",
     "name": "Mixing",
     "slug": "mixing",
-    "mode": "in_person",
-    "summary": "Mixed in Pro Tools with UAD plugins: classic consoles, tape and vintage compressors that make guitars bite and drums hit. Sit in on the session and leave with a song that sounds like a record.",
-    "includes": "Attended mix sessions\nUp to 64 stems per song\nMain, instrumental, a cappella, TV mix\nStem prints for live shows",
-    "spec": "Send: 24-bit / 48 kHz WAV, all starting at bar 1",
-    "price": 300,
-    "sale_price": 225,
-    "price_unit": "per song",
-    "price_from": false,
-    "price_note": "3 revision rounds and all alternate mixes included.",
-    "addons": "",
-    "order": 3
-  }
-},
-{
-  "model": "portfolio.service",
-  "pk": 8,
-  "fields": {
-    "category": "music",
-    "name": "Online mixing",
-    "slug": "online-mixing",
-    "mode": "remote",
-    "summary": "Record anywhere, send the stems, and review the mix on your own speakers. Same Pro Tools + UAD chain as in the room.",
-    "includes": "Up to 64 stems per song\n3 revision rounds by timestamped notes\nRough vs. mix comparison with every version\nMain, instrumental, a cappella, TV mix",
+    "mode": "both",
+    "summary": "Mixed in Pro Tools with UAD plugins: classic consoles, tape and vintage compressors that make guitars bite and drums hit. Sit in on the session with me, or send your stems from anywhere and review the mix on your own speakers.",
+    "includes": "In-person or online mix sessions\nUp to 64 stems per song\n3 revision rounds by timestamped notes\nRough vs. mix comparison with every version\nMain, instrumental, a cappella, TV mix\nStem prints for live shows",
     "spec": "Send: 24-bit / 48 kHz WAV stems, all starting at bar 1",
     "price": 300,
     "sale_price": 225,
     "price_unit": "per song",
     "price_from": false,
-    "price_note": "3 revision rounds. EP of 4+ songs: 10% off.",
+    "price_note": "3 revision rounds and all alternate mixes included. EP of 4+ songs: 10% off.",
     "addons": "",
-    "order": 4
+    "order": 3
   }
 },
 {
@@ -164,39 +84,19 @@
   "pk": 10,
   "fields": {
     "category": "video",
-    "name": "Concert video",
-    "slug": "live-concert",
+    "name": "Concert & studio live",
+    "slug": "live-video",
     "mode": "in_person",
-    "summary": "On stage is where your band is at its best. I film your show from several angles and cut it into a live film that feels like the front row: the sweat, the crowd, the moment the chorus hits. Use it to book more shows, pitch festivals and fill your feed for months.",
-    "includes": "Multi-camera coverage: wide, stage and close-ups on every player\nSynced to the board audio or your own recording*\nCut to the music, with crowd and backstage moments\nColor-graded in 4K, ready for YouTube and socials\n2 revision rounds",
+    "summary": "Your band live, on stage or in a studio. At a show I film from several angles and cut it into a live film that feels like the front row. In a studio you get clean, cinematic performance videos with proper lighting. Use them to book shows, pitch festivals and fill your feed for months.",
+    "includes": "Multi-camera coverage: wide, stage and close-ups on every player\nSynced to the board, the studio’s recording or your own audio*\nCrowd and backstage moments at shows\nLighting set up for studio sessions\nColor-graded in 4K, ready for YouTube and socials\n2 revision rounds",
     "spec": "* Want the live audio mixed too? I can mix it separately. It’s not part of these packages.",
     "price": 500,
     "sale_price": 250,
-    "price_unit": "per show",
+    "price_unit": "per show or session",
     "price_from": true,
-    "price_note": "Travel within Calgary and Edmonton included.",
-    "addons": "Extra 30 minutes of set | +$150\nExtra camera with a partner operator | +$200\nExtra song as its own video | +$75\nRush delivery (7 days) | +25%",
+    "price_note": "Studio room is paid by the band. Travel within Calgary and Edmonton included.",
+    "addons": "Extra 30 minutes of set | +$150\nExtra song as its own video | +$100\nExtra camera with a partner operator | +$200\nInterview or band Q&A segment | +$100\nRush delivery (7 days) | +25%",
     "order": 2
-  }
-},
-{
-  "model": "portfolio.service",
-  "pk": 11,
-  "fields": {
-    "category": "video",
-    "name": "Studio live session",
-    "slug": "live-session",
-    "mode": "in_person",
-    "summary": "Your band playing live in a studio, filmed on 3 cameras with proper lighting. Clean, cinematic performance videos that show how good you really sound together.",
-    "includes": "3 cameras, lighting set up for the room\nSynced to the studio’s recording of your performance\nEdited, color-graded performance videos\nVertical clips for socials",
-    "spec": "Studio room booked and paid by the band at the studio’s rate",
-    "price": 400,
-    "sale_price": 250,
-    "price_unit": "per session",
-    "price_from": true,
-    "price_note": "Pick a package below.",
-    "addons": "Extra song | +$150\nInterview or band Q&A segment | +$100",
-    "order": 3
   }
 },
 {
@@ -241,90 +141,6 @@
 },
 {
   "model": "portfolio.package",
-  "pk": 7,
-  "fields": {
-    "service": 11,
-    "name": "One song",
-    "tagline": "3 cameras · 1 song",
-    "includes": "1 performance video\n2 vertical clips",
-    "price": 400,
-    "sale_price": 250,
-    "featured": false,
-    "order": 1
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 8,
-  "fields": {
-    "service": 11,
-    "name": "Session",
-    "tagline": "3 cameras · 3 songs",
-    "includes": "3 performance videos\nFull-session cut\n6 vertical clips",
-    "price": 900,
-    "sale_price": 500,
-    "featured": true,
-    "order": 2
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 9,
-  "fields": {
-    "service": 11,
-    "name": "Full set",
-    "tagline": "3 cameras · 5 songs",
-    "includes": "5 performance videos\nFull-session cut\n10 vertical clips",
-    "price": 1300,
-    "sale_price": 850,
-    "featured": false,
-    "order": 3
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 10,
-  "fields": {
-    "service": 10,
-    "name": "Starter",
-    "tagline": "2 cameras · up to 30 min",
-    "includes": "Me on camera + a locked-off wide shot\n1 song as a polished live video\n3 vertical clips for socials\nBest for: promoting your next show",
-    "price": 500,
-    "sale_price": 250,
-    "featured": false,
-    "order": 1
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 11,
-  "fields": {
-    "service": 10,
-    "name": "Full set",
-    "tagline": "3 cameras · up to 60 min",
-    "includes": "Me + a partner camera operator + wide shot\nYour whole set as one live film\n3 songs as standalone videos\n6 vertical clips for socials\nBest for: EPKs and festival applications",
-    "price": 950,
-    "sale_price": 500,
-    "featured": true,
-    "order": 2
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 12,
-  "fields": {
-    "service": 10,
-    "name": "Headliner",
-    "tagline": "4 cameras · up to 60 min",
-    "includes": "Me + 1 partner camera operator + 2 locked-off cameras\nFull concert film with backstage moments\n5 songs as standalone videos\n10 vertical clips for socials\nBest for: release shows and tour stops",
-    "price": 1600,
-    "sale_price": 850,
-    "featured": false,
-    "order": 3
-  }
-},
-{
-  "model": "portfolio.package",
   "pk": 13,
   "fields": {
     "service": 13,
@@ -361,6 +177,90 @@
     "includes": "One sound across the whole EP\nFull project plan and budget\nProducing every session\nRelease plan included",
     "price": 1800,
     "sale_price": 1350,
+    "featured": false,
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 16,
+  "fields": {
+    "service": 10,
+    "name": "Starter",
+    "tagline": "2–3 cameras · 1 song",
+    "includes": "On stage or in the studio\n1 song as a polished live video\n3 vertical clips for socials\nBest for: promoting your next show",
+    "price": 500,
+    "sale_price": 250,
+    "featured": false,
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 17,
+  "fields": {
+    "service": 10,
+    "name": "Full set",
+    "tagline": "3 cameras · 60-min show or 3 songs",
+    "includes": "Me + a partner camera operator\nYour whole set as one live film, or a full studio session\n3 songs as standalone videos\n6 vertical clips for socials\nBest for: EPKs and festival applications",
+    "price": 950,
+    "sale_price": 500,
+    "featured": true,
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 18,
+  "fields": {
+    "service": 10,
+    "name": "Headliner",
+    "tagline": "4 cameras · 60-min show or 5 songs",
+    "includes": "Me + 1 partner camera operator + 2 locked-off cameras\nFull concert film or studio session, with backstage moments\n5 songs as standalone videos\n10 vertical clips for socials\nBest for: release shows, tour stops, live EPs",
+    "price": 1600,
+    "sale_price": 850,
+    "featured": false,
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 19,
+  "fields": {
+    "service": 2,
+    "name": "Edit",
+    "tagline": "Cut only",
+    "includes": "Full edit synced to your song\n3 social cutdowns for Reels, TikTok, Shorts\n2 revision rounds",
+    "price": 650,
+    "sale_price": 450,
+    "featured": false,
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 20,
+  "fields": {
+    "service": 2,
+    "name": "Edit + color",
+    "tagline": "The finished video",
+    "includes": "Full edit synced to your song\nColor grade with a custom look\n3 social cutdowns\nLUT for future shoots",
+    "price": 1100,
+    "sale_price": 650,
+    "featured": true,
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 21,
+  "fields": {
+    "service": 2,
+    "name": "Color",
+    "tagline": "Grade only",
+    "includes": "Grade of your locked edit\nShot matching across cameras\nLUT for future shoots",
+    "price": 450,
+    "sale_price": 300,
     "featured": false,
     "order": 3
   }

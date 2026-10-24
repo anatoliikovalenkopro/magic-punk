@@ -1,13 +1,13 @@
 {% extends "portfolio/base.html" %}
 
 {% block title %}Music production · Magic Punk{% endblock %}
-{% block description %}Recording and mixing in Alberta for bands and artists: rock, punk, country, folk and more. Pre-production, studio recording, mixing and online mixing by Magic Punk.{% endblock %}
+{% block description %}Music production and mixing in Alberta for bands and artists: rock, punk, country, folk and more. Producer and mixing, in person or online, by Magic Punk.{% endblock %}
 
 {% block content %}
 <header class="page-hero">
   <div class="eyebrow">Magic Punk · Music</div>
   <h1>Music <em>production</em></h1>
-  <p class="lede">Records for bands and artists, from rock and punk to country and folk. From the first demo to a finished mix: pre-production, recording and mixing, in the room or online. For mastering, I’ll point you to people I trust.</p>
+  <p class="lede">Records for bands and artists, from rock and punk to country and folk. From the first demo to a finished mix: producing and mixing, in the room or online. For mastering, I’ll point you to people I trust.</p>
   <nav class="chips" aria-label="Music services">
     {% if has_tracks %}<a href="#mixes">Mixes</a>{% endif %}
     <a href="#studios">Studios &amp; rig</a>
@@ -54,7 +54,7 @@
   <div class="how">
     <div class="how-card">
       <h3>Studios across Alberta</h3>
-      <p>I don’t lock you into one room. I record in partner studios across Alberta and pick the one that suits the song: a big live room for drums that need air, a vocal booth for a quiet take, or a rehearsal space when the band sounds best playing together.</p>
+      <p>I don’t lock you into one room. I work with partner studios across Alberta and help you pick the one that suits the song: a big live room for drums that need air, a vocal booth for a quiet take, or a rehearsal space when the band sounds best playing together.</p>
       <p class="how-note">You pay the studio’s room rate, and I book it and set it up. Mixing happens in my own room.</p>
     </div>
     <div class="how-card">
@@ -71,14 +71,14 @@
   <div class="sec-head">
     <div>
       <div class="eyebrow">Services</div>
-      <h2 id="svc-h">What I <em>record &amp; mix</em></h2>
+      <h2 id="svc-h">What I <em>produce &amp; mix</em></h2>
     </div>
-    <p>Book one step or take the song all the way through. Online mixing works from anywhere in the world. Prices in CAD, plus 5% GST.</p>
+    <p>Book one step or take the song all the way through. Mixing works in person or online, from anywhere in the world. Prices in CAD.</p>
   </div>
   <div class="svc-list">
     {% for s in services %}{% include "portfolio/_service.html" %}{% endfor %}
   </div>
-  <p class="cross-note"><strong>Want it on video?</strong> I can record and mix your live session and also film it. See <a href="{% url 'portfolio:video' %}#live-session">Video production</a> and ask about both.</p>
+  <p class="cross-note"><strong>Want it on video?</strong> I can mix your live session and also film it. See <a href="{% url 'portfolio:video' %}#live-video">Video production</a> and ask about both.</p>
   {% include "portfolio/_remote_steps.html" with step1="Your demo, reference tracks and release date." step3="A private link to the mix, with the rough to compare." %}
 </section>
 {% endblock %}

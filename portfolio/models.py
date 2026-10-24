@@ -8,6 +8,7 @@ class Service(models.Model):
     MODE_CHOICES = [
         ('in_person', 'In person'),
         ('remote', 'Remote'),
+        ('both', 'In person & online'),
         ('referral', 'I’ll recommend'),
     ]
 
