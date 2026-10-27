@@ -171,7 +171,7 @@
     "includes": "Stage, crowd and close-ups of every player\nLow-light shooting, no flash in your face\nEdited in one consistent look\nFull-resolution and web-ready files\nFree use for your band’s promo",
     "spec": "Delivers: online gallery within 7 days · full-res JPG + web sizes",
     "price": 250,
-    "sale_price": 150,
+    "sale_price": 100,
     "price_unit": "per show",
     "price_from": true,
     "price_note": "Travel within Calgary and Edmonton included.",
@@ -354,7 +354,7 @@
     "tagline": "Up to 30 min · 25 photos",
     "includes": "Your set from the photo pit and the crowd\n25 edited photos\nBest for: promoting the next show",
     "price": 250,
-    "sale_price": 150,
+    "sale_price": 100,
     "featured": false,
     "order": 1
   }
@@ -382,7 +382,7 @@
     "tagline": "Up to 4 hours · 120 photos",
     "includes": "Several acts or your whole event\nBackstage, crowd and venue details\n120 edited photos\nBest for: release shows and festivals",
     "price": 800,
-    "sale_price": 500,
+    "sale_price": 450,
     "featured": false,
     "order": 3
   }

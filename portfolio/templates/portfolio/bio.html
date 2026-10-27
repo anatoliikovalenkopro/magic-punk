@@ -1,0 +1,13 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Bio · {{ owner_name|default:"Magic Punk" }}{% endblock %}
+{% block description %}About {{ owner_name|default:"the person behind Magic Punk" }}: musician, filmmaker and mixing engineer working with bands and artists across Alberta.{% endblock %}
+
+{% block content %}
+<header class="page-hero">
+  <div class="eyebrow">Magic Punk · Bio</div>
+  <h1>About <em>me</em></h1>
+</header>
+
+{% include "portfolio/_about.html" %}
+{% endblock %}

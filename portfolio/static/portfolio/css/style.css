@@ -38,6 +38,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .dd-top { display: block; padding: 12px 14px; font: 800 13px/1 var(--f-head); font-stretch: 118%; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; color: var(--bone); border-bottom: 2px solid transparent; }
 .dd-top span { color: var(--spell); font-size: 11px; }
 .dd.active .dd-top { border-bottom-color: var(--spell); }
+.nav-link.active { border-bottom-color: var(--spell); }
 .dd-panel {
   position: absolute; top: 100%; left: 0; min-width: 300px; padding: 8px;
   background: var(--ink-2); border: 2px solid var(--bone); box-shadow: 6px 6px 0 var(--spell);
@@ -329,6 +330,15 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
 
 /* home: genres as plain text */
 .genre-line { margin: 22px 0 0; font: 800 clamp(16px, 1.8vw, 20px)/1.6 var(--f-head); font-stretch: 112%; text-transform: uppercase; letter-spacing: .02em; color: var(--spell); max-width: 900px; }
+
+/* ===== service cards: each service is its own clearly separated block (all pages) ===== */
+.svc-list { border-top: 0; display: grid; gap: 22px; }
+.svc-row,
+.svc-row:target { background: var(--ink-2); border: 1px solid var(--line); border-top: 4px solid var(--spell); padding: clamp(18px, 2.4vw, 28px); }
+.svc-row:target { box-shadow: 6px 6px 0 var(--spell); }
+.svc-row.referral { border-top-color: var(--sulfur); }
+.svc-row .pkg { background: var(--ink); }
+.svc-row .addon { background: var(--ink); }
 
 /* photography gallery */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }

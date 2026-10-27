@@ -54,6 +54,13 @@ def video(request):
     })
 
 
+def bio(request):
+    return render(request, 'portfolio/bio.html', {
+        'page': 'bio',
+        'videos_data': videos_as_data(),  # "Worked with" credits
+    })
+
+
 def photo(request):
     return render(request, 'portfolio/photo.html', {
         'page': 'photo',

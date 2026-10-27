@@ -50,6 +50,7 @@
           {% endfor %}
         </div>
       </div>
+      <a class="dd-top nav-link{% if page == 'bio' %} active{% endif %}" href="{% url 'portfolio:bio' %}">Bio</a>
       <a class="nav-cta" href="#contact">Contact</a>
     </nav>
 
@@ -63,6 +64,7 @@
         {% for s in nav_music %}<a href="{% url 'portfolio:music' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
         <a class="mm-title" href="{% url 'portfolio:photo' %}">Photography</a>
         {% for s in nav_photo %}<a href="{% url 'portfolio:photo' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        <a class="mm-title" href="{% url 'portfolio:bio' %}">Bio</a>
         <a class="mm-title" href="#contact">Contact</a>
       </div>
     </details>
@@ -143,7 +145,7 @@
 
   <footer>
     <span>© {% now "Y" %} Magic Punk{% if owner_name %} · {{ owner_name }}{% endif %}</span>
-    <span><a href="{% url 'portfolio:video' %}">Video production</a> · <a href="{% url 'portfolio:music' %}">Music production</a> · <a href="{% url 'portfolio:photo' %}">Photography</a></span>
+    <span><a href="{% url 'portfolio:video' %}">Video production</a> · <a href="{% url 'portfolio:music' %}">Music production</a> · <a href="{% url 'portfolio:photo' %}">Photography</a> · <a href="{% url 'portfolio:bio' %}">Bio</a></span>
   </footer>
 </div>
 {% block data %}{% endblock %}

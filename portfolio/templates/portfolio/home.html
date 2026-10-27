@@ -48,21 +48,7 @@
   </a>
 </section>
 
-<section class="block about" aria-labelledby="about-h">
-  <figure class="about-photo">
-    <img src="{% static 'portfolio/img/me.jpg' %}?v={{ css_version }}" width="1400" height="934"
-         alt="{% if owner_name %}{{ owner_name }}{% else %}The person behind Magic Punk{% endif %} recording guitar in the studio">
-  </figure>
-  <div class="about-text">
-    <div class="eyebrow">Who you’ll work with</div>
-    <h2 id="about-h">{% if owner_name %}Hi, I’m <em>{{ owner_name }}</em>{% else %}The person behind <em>Magic Punk</em>{% endif %}</h2>
-    <p>I’m a musician who ended up behind the camera and the mixing desk. I work with bands and artists across Alberta, from the first demo to the music video.</p>
-    <p>No account managers, no middlemen: you talk to me from the first call to the final file.</p>
-    {% if videos_data %}
-    <p class="credits"><span>Worked with</span> {% for v in videos_data %}{{ v.artist }}{% if not forloop.last %} · {% endif %}{% endfor %}</p>
-    {% endif %}
-  </div>
-</section>
+{% include "portfolio/_about.html" %}
 
 <section class="block fit" aria-labelledby="fit-h">
   <div class="fit-head">
