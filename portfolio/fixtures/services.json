@@ -160,6 +160,66 @@
   }
 },
 {
+  "model": "portfolio.service",
+  "pk": 15,
+  "fields": {
+    "category": "photo",
+    "name": "Concert photography",
+    "slug": "concert-photography",
+    "mode": "in_person",
+    "summary": "Your show in stills: sweat, lights, crowd and the faces you make on the loud parts. Shot in low light without flash, edited in one consistent look, ready for posters, press and your feed.",
+    "includes": "Stage, crowd and close-ups of every player\nLow-light shooting, no flash in your face\nEdited in one consistent look\nFull-resolution and web-ready files\nFree use for your band’s promo",
+    "spec": "Delivers: online gallery within 7 days · full-res JPG + web sizes",
+    "price": 250,
+    "sale_price": 150,
+    "price_unit": "per show",
+    "price_from": true,
+    "price_note": "Travel within Calgary and Edmonton included.",
+    "addons": "Same-night preview (10 photos) | +$50\nBooked together with Concert & studio live video | 20% off photos\nRush delivery (48 hours) | +25%",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.service",
+  "pk": 16,
+  "fields": {
+    "category": "photo",
+    "name": "Band promo shoot",
+    "slug": "band-promo",
+    "mode": "in_person",
+    "summary": "Press photos that actually look like your band, not like a stock catalogue. For Spotify, posters, festival applications and every “send us a hi-res photo” email.",
+    "includes": "Location or studio shoot\nGroup shots and individual portraits\nHelp with concept, outfits and locations\n20 edited photos",
+    "spec": "Delivers: full-res JPG + square and vertical crops for socials",
+    "price": 300,
+    "sale_price": 200,
+    "price_unit": "per shoot",
+    "price_from": true,
+    "price_note": "1–2 hours, 1–2 locations.",
+    "addons": "",
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.service",
+  "pk": 17,
+  "fields": {
+    "category": "photo",
+    "name": "Studio & behind the scenes",
+    "slug": "studio-bts",
+    "mode": "in_person",
+    "summary": "Photos from inside your recording session or video shoot: the real story of making the record, ready for release-week posts.",
+    "includes": "Candid shots while you record or film\nGear and detail shots\n30 edited photos\nReady for socials",
+    "spec": "",
+    "price": 200,
+    "sale_price": 120,
+    "price_unit": "per session",
+    "price_from": false,
+    "price_note": "Up to 3 hours. $80 when added to a recording or video booking.",
+    "addons": "",
+    "order": 3
+  }
+},
+{
   "model": "portfolio.package",
   "pk": 13,
   "fields": {
@@ -281,6 +341,48 @@
     "includes": "Grade of your locked edit\nShot matching across cameras\nLUT for future shoots",
     "price": 450,
     "sale_price": 250,
+    "featured": false,
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 22,
+  "fields": {
+    "service": 15,
+    "name": "Quick set",
+    "tagline": "Up to 30 min · 25 photos",
+    "includes": "Your set from the photo pit and the crowd\n25 edited photos\nBest for: promoting the next show",
+    "price": 250,
+    "sale_price": 150,
+    "featured": false,
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 23,
+  "fields": {
+    "service": 15,
+    "name": "Full show",
+    "tagline": "Up to 90 min · 60 photos",
+    "includes": "Whole show, soundcheck and backstage\n60 edited photos\nBest for: press kits and festival applications",
+    "price": 400,
+    "sale_price": 250,
+    "featured": true,
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.package",
+  "pk": 24,
+  "fields": {
+    "service": 15,
+    "name": "Release night",
+    "tagline": "Up to 4 hours · 120 photos",
+    "includes": "Several acts or your whole event\nBackstage, crowd and venue details\n120 edited photos\nBest for: release shows and festivals",
+    "price": 800,
+    "sale_price": 500,
     "featured": false,
     "order": 3
   }

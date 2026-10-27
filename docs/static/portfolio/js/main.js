@@ -429,6 +429,29 @@ if (form) {
 const DEFAULT_CLIP = { artist: "Magic Punk", hue: 330, look: "tape" };
 const videoDoor = document.querySelector('[data-door="video"]');
 const musicDoor = document.querySelector('[data-door="music"]');
+const photoDoor = document.querySelector('[data-door="photo"]');
+// aperture blades that close and open like a shutter every couple of seconds
+function drawPhotoDoor(t) {
+  const [w, h] = fitCanvas(photoDoor), g = photoDoor.getContext("2d");
+  g.fillStyle = css("--ink"); g.fillRect(0, 0, w, h);
+  const cx = w / 2, cy = h / 2, R = h * .42, cycle = t % 2.4;
+  const shut = cycle < .25 ? Math.sin(cycle / .25 * Math.PI) : 0;          // 0 open .. 1 closed
+  const open = R * (.62 - .5 * shut), blades = 7, spin = t * .15;
+  if (cycle < .06) { g.fillStyle = "rgba(255,255,255,.35)"; g.fillRect(0, 0, w, h); }  // flash
+  for (let i = 0; i < blades; i++) {
+    const a = spin + i / blades * Math.PI * 2, b = a + Math.PI * 2 / blades * 1.35;
+    g.beginPath();
+    g.moveTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R);
+    g.arc(cx, cy, R, a, b);
+    g.lineTo(cx + Math.cos(b + .9) * open, cy + Math.sin(b + .9) * open);
+    g.lineTo(cx + Math.cos(a + .9) * open, cy + Math.sin(a + .9) * open);
+    g.closePath();
+    g.fillStyle = i % 2 ? css("--spell") : css("--ink-3"); g.fill();
+    g.strokeStyle = css("--ink"); g.lineWidth = 2; g.stroke();
+  }
+  g.strokeStyle = css("--bone"); g.lineWidth = 3; g.beginPath(); g.arc(cx, cy, R, 0, Math.PI * 2); g.stroke();
+  g.fillStyle = "rgba(0,0,0,.25)"; for (let y = 0; y < h; y += 5) g.fillRect(0, y, w, 1);
+}
 const doorBars = Array.from({ length: 48 }, (_, i) => rng(i + 11)());
 function drawMusicDoor(t) {
   const [w, h] = fitCanvas(musicDoor), g = musicDoor.getContext("2d");
@@ -453,6 +476,7 @@ function frame(now) {
   if (scope) drawScope(t0);
   if (videoDoor) { const [w, h] = fitCanvas(videoDoor); drawScene(videoDoor.getContext("2d"), w, h, t0 + 1.5, VIDEOS[0] || DEFAULT_CLIP); }
   if (musicDoor) drawMusicDoor(t0);
+  if (photoDoor) drawPhotoDoor(t0);
   if (vPlaying && !videoEl) vTime += dt;
   if (monitor && !videoEl && !ytEl && VIDEOS.length) { const [w, h] = fitCanvas(monitor); drawScene(monitor.getContext("2d"), w, h, vTime + 1.5, VIDEOS[current]); }
   if (tcEl) tcEl.textContent = timecode(videoEl ? videoEl.currentTime : vTime);

@@ -2,7 +2,7 @@ import re
 
 from django.shortcuts import render
 
-from .models import Service, Track, Video
+from .models import Photo, Service, Track, Video
 
 YOUTUBE_ID = re.compile(r'(?:youtube\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/)|youtu\.be/)([\w-]{11})')
 
@@ -51,6 +51,14 @@ def video(request):
         'page': 'video',
         'services': Service.objects.filter(category='video').prefetch_related('packages'),
         'videos_data': videos_as_data(),
+    })
+
+
+def photo(request):
+    return render(request, 'portfolio/photo.html', {
+        'page': 'photo',
+        'services': Service.objects.filter(category='photo').prefetch_related('packages'),
+        'photos': Photo.objects.all(),
     })
 
 

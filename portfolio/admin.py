@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Package, Service, Track, Video
+from .models import Package, Photo, Service, Track, Video
 
 
 class PackageInline(admin.StackedInline):
@@ -16,6 +16,12 @@ class ServiceAdmin(admin.ModelAdmin):
     list_filter = ['category', 'mode']
     prepopulated_fields = {'slug': ['name']}
     inlines = [PackageInline]
+
+
+@admin.register(Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'order']
+    list_editable = ['order']
 
 
 @admin.register(Video)

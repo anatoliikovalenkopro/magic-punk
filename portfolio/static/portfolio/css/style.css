@@ -166,12 +166,12 @@ h2 em { font-style: normal; color: var(--spell); }
 .chips a:hover { border-color: var(--spell); color: var(--spell); }
 
 /* home: two doors */
-.doors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-block: clamp(48px, 7vw, 88px) 0; }
-.door { display: flex; flex-direction: column; border: 2px solid var(--bone); background: var(--ink-2); text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-block: clamp(48px, 7vw, 88px) 0; }
+.door { min-width: 0; display: flex; flex-direction: column; border: 2px solid var(--bone); background: var(--ink-2); text-decoration: none; transition: transform .15s, box-shadow .15s; }
 .door:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--spell); }
 .door-art { display: block; width: 100%; aspect-ratio: 16 / 7; max-width: 100%; border-bottom: 2px solid var(--bone); background: #000; }
 .door-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
-.doors h2 { font-size: clamp(36px, 5vw, 60px); margin: 0; }
+.doors h2 { font-size: clamp(24px, 2.4vw, 38px); margin: 0; overflow-wrap: anywhere; }
 .door ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .door li { display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
 .door .btn { align-self: flex-start; margin-top: auto; }
@@ -330,6 +330,13 @@ footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wr
 /* home: genres as plain text */
 .genre-line { margin: 22px 0 0; font: 800 clamp(16px, 1.8vw, 20px)/1.6 var(--f-head); font-stretch: 112%; text-transform: uppercase; letter-spacing: .02em; color: var(--spell); max-width: 900px; }
 
+/* photography gallery */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.shot { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink-2); }
+.shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+.shot:hover img { transform: scale(1.04); }
+.shot span { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 12px 10px; font: 500 12px/1.3 var(--f-mono); color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.7)); }
+
 /* ===== compact layout for service pages (overrides the larger spacing above) ===== */
 section.block { padding-block: clamp(36px, 5vw, 64px) 0; }
 .sec-head { margin-bottom: 18px; }
@@ -390,6 +397,7 @@ h2 { font-size: clamp(32px, 5vw, 60px); }
 .how-card p { font-size: 15px; }
 
 @media (max-width: 1000px) {
+  .doors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 820px) {
@@ -416,5 +424,5 @@ h2 { font-size: clamp(32px, 5vw, 60px); }
   .hero .row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn, .door, .dd-panel { transition: none; }
+  .btn, .door, .dd-panel, .shot img { transition: none; }
 }

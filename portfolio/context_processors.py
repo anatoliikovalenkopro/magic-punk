@@ -21,6 +21,7 @@ def site(request):
     return {
         'nav_video': [s for s in services if s.category == 'video'],
         'nav_music': [s for s in services if s.category == 'music'],
+        'nav_photo': [s for s in services if s.category == 'photo'],
         'has_tracks': Track.objects.exists(),  # hides the mixes player until a real song is added
         'css_version': _version('css/style.css'),
         'js_version': _version('js/main.js'),

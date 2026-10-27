@@ -1,0 +1,50 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Photography · Magic Punk{% endblock %}
+{% block description %}Concert photography, band promo shoots and behind-the-scenes photos in Alberta by Magic Punk.{% endblock %}
+
+{% block content %}
+<header class="page-hero">
+  <div class="eyebrow">Magic Punk · Photo</div>
+  <h1>Photo<em>graphy</em></h1>
+  <p class="lede">Concert photos shot from the pit, press photos that look like your band, and the story behind the record. Across Alberta.</p>
+  <nav class="chips" aria-label="Photography services">
+    {% if photos %}<a href="#gallery">Gallery</a>{% endif %}
+    {% for s in services %}<a href="#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+  </nav>
+</header>
+
+{% if photos %}
+<section class="block" id="gallery" aria-labelledby="gallery-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Gallery</div>
+      <h2 id="gallery-h">Shot <em>live</em></h2>
+    </div>
+    <p>Click a photo to open it full size.</p>
+  </div>
+  <div class="gallery">
+    {% for p in photos %}
+    <a class="shot" href="{{ p.image.url }}" target="_blank" rel="noopener">
+      <img src="{{ p.image.url }}" alt="{{ p.alt|default:p.caption }}" loading="lazy">
+      {% if p.caption %}<span>{{ p.caption }}</span>{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="block" id="services" aria-labelledby="svc-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Services</div>
+      <h2 id="svc-h">What I <em>shoot</em></h2>
+    </div>
+    <p>Book photos on their own, or add them to a video or recording booking. Prices in CAD.</p>
+  </div>
+  <div class="svc-list">
+    {% for s in services %}{% include "portfolio/_service.html" %}{% endfor %}
+  </div>
+  <p class="cross-note"><strong>Filming the same show?</strong> Book photos together with a <a href="{% url 'portfolio:video' %}#live-video">concert video</a> and get 20% off the photos.</p>
+</section>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.db import models
 class Service(models.Model):
     """A service in the Video or Music menu. Edit them at /admin."""
 
-    CATEGORY_CHOICES = [('video', 'Video production'), ('music', 'Music production')]
+    CATEGORY_CHOICES = [('video', 'Video production'), ('music', 'Music production'), ('photo', 'Photography')]
     MODE_CHOICES = [
         ('in_person', 'In person'),
         ('remote', 'Remote'),
@@ -76,6 +76,21 @@ class Package(models.Model):
 
     def includes_list(self):
         return [line.strip() for line in self.includes.splitlines() if line.strip()]
+
+
+class Photo(models.Model):
+    """A photo in the Photography gallery. Upload them at /admin."""
+
+    image = models.FileField(upload_to='photos/', help_text='JPG, ideally about 2000 px on the long side')
+    caption = models.CharField(max_length=120, blank=True, help_text='e.g. band name, venue')
+    alt = models.CharField(max_length=160, blank=True, help_text='Short description for Google and screen readers')
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order', '-id']
+
+    def __str__(self):
+        return self.caption or self.image.name
 
 
 class Video(models.Model):
