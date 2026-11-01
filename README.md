@@ -2,6 +2,8 @@
 
 Portfolio site for music videos, recording and mixing. Built with Django.
 
+http://magicpunkstudio.com/
+
 ## Project layout
 
 ```
