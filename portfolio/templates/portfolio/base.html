@@ -33,6 +33,10 @@
         </div>
       </div>
       {% endif %}
+      {% if music_only %}
+      {% for s in nav_music %}<a class="dd-top nav-link" href="{% url 'portfolio:home' %}#{{ s.slug }}">{{ s.name }}</a>
+      {% endfor %}
+      {% else %}
       <div class="dd{% if page == 'music' %} active{% endif %}">
         <a class="dd-top" href="{% url 'portfolio:music' %}">Music production <span aria-hidden="true">▾</span></a>
         <div class="dd-panel">
@@ -43,6 +47,7 @@
           {% endfor %}
         </div>
       </div>
+      {% endif %}
       {% if show_photo %}
       <div class="dd{% if page == 'photo' %} active{% endif %}">
         <a class="dd-top" href="{% url 'portfolio:photo' %}">Photography <span aria-hidden="true">▾</span></a>
@@ -54,7 +59,7 @@
         </div>
       </div>
       {% endif %}
-      <a class="dd-top nav-link{% if page == 'bio' %} active{% endif %}" href="{% url 'portfolio:bio' %}">Bio</a>
+      <a class="dd-top nav-link{% if page == 'bio' %} active{% endif %}" href="{% if music_only %}{% url 'portfolio:home' %}#about{% else %}{% url 'portfolio:bio' %}{% endif %}">Bio</a>
       <a class="nav-cta" href="#contact">Contact</a>
     </nav>
 
@@ -64,11 +69,12 @@
       <div class="mm-panel">
         {% if show_video %}<a class="mm-title" href="{% url 'portfolio:video' %}">Video production</a>
         {% for s in nav_video %}<a href="{% url 'portfolio:video' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}{% endif %}
-        <a class="mm-title" href="{% url 'portfolio:music' %}">Music production</a>
-        {% for s in nav_music %}<a href="{% url 'portfolio:music' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        {% if music_only %}{% for s in nav_music %}<a class="mm-title" href="{% url 'portfolio:home' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        {% else %}<a class="mm-title" href="{% url 'portfolio:music' %}">Music production</a>
+        {% for s in nav_music %}<a href="{% url 'portfolio:music' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}{% endif %}
         {% if show_photo %}<a class="mm-title" href="{% url 'portfolio:photo' %}">Photography</a>
         {% for s in nav_photo %}<a href="{% url 'portfolio:photo' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}{% endif %}
-        <a class="mm-title" href="{% url 'portfolio:bio' %}">Bio</a>
+        <a class="mm-title" href="{% if music_only %}{% url 'portfolio:home' %}#about{% else %}{% url 'portfolio:bio' %}{% endif %}">Bio</a>
         <a class="mm-title" href="#contact">Contact</a>
       </div>
     </details>
@@ -149,7 +155,8 @@
 
   <footer>
     <span>© {% now "Y" %} Magic Punk{% if owner_name %} · {{ owner_name }}{% endif %}</span>
-    <span>{% if show_video %}<a href="{% url 'portfolio:video' %}">Video production</a> · {% endif %}<a href="{% url 'portfolio:music' %}">Music production</a> · {% if show_photo %}<a href="{% url 'portfolio:photo' %}">Photography</a> · {% endif %}<a href="{% url 'portfolio:bio' %}">Bio</a></span>
+    {% if music_only %}<span>{% for s in nav_music %}<a href="{% url 'portfolio:home' %}#{{ s.slug }}">{{ s.name }}</a> · {% endfor %}<a href="{% url 'portfolio:home' %}#about">Bio</a> · <a href="#contact">Contact</a></span>
+    {% else %}<span>{% if show_video %}<a href="{% url 'portfolio:video' %}">Video production</a> · {% endif %}<a href="{% url 'portfolio:music' %}">Music production</a> · {% if show_photo %}<a href="{% url 'portfolio:photo' %}">Photography</a> · {% endif %}<a href="{% url 'portfolio:bio' %}">Bio</a></span>{% endif %}
   </footer>
 </div>
 {% block data %}{% endblock %}

@@ -84,6 +84,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   text-decoration: none; border: 2px solid var(--bone); background: transparent; transition: transform .15s, background .15s, color .15s;
 }
 .btn.primary { background: var(--spell); border-color: var(--spell); color: var(--ink); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--bone); }
 .sticker {
   position: absolute; right: 0; top: clamp(40px, 8vw, 96px);

@@ -21,6 +21,7 @@ def site(request):
     return {
         'show_video': settings.SHOW_VIDEO,
         'show_photo': settings.SHOW_PHOTO,
+        'music_only': not settings.SHOW_VIDEO and not settings.SHOW_PHOTO,  # one-page site, menu links to sections
         'nav_video': [s for s in services if s.category == 'video'] if settings.SHOW_VIDEO else [],
         'nav_music': [s for s in services if s.category == 'music'],
         'nav_photo': [s for s in services if s.category == 'photo'] if settings.SHOW_PHOTO else [],

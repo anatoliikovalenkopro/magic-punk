@@ -43,6 +43,9 @@ def tracks_as_data():
 
 
 def home(request):
+    if not settings.SHOW_VIDEO and not settings.SHOW_PHOTO:
+        # music only: mixes, services, bio and contact all on the home page
+        return render(request, 'portfolio/home_music.html', music_context('home'))
     return render(request, 'portfolio/home.html', {
         'page': 'home',
         'videos_data': videos_as_data() if settings.SHOW_VIDEO else [],  # video door preview
@@ -69,10 +72,14 @@ def photo(request):
     })
 
 
-def music(request):
-    return render(request, 'portfolio/music.html', {
-        'page': 'music',
+def music_context(page):
+    return {
+        'page': page,
         'services': Service.objects.filter(category='music').prefetch_related('packages'),
         'tracks_data': tracks_as_data(),
         'has_roughs': Track.objects.exclude(rough_file='').exists(),  # shows the Rough/Mix switch
-    })
+    }
+
+
+def music(request):
+    return render(request, 'portfolio/music.html', music_context('music'))

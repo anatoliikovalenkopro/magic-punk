@@ -1,0 +1,29 @@
+{# Mixes player. Used by home_music.html and music.html; needs tracks_data in the page's data block #}
+{% if has_tracks %}
+<section class="block" id="mixes" aria-labelledby="mixes-h">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow">Session sheet</div>
+      <h2 id="mixes-h">Loud <em>&amp; clear</em></h2>
+    </div>
+    <p>{% if has_roughs %}Hit play, then flip between the rough and the mix.{% else %}Recent mixes. Hit play, or click the waveform to jump around.{% endif %}</p>
+  </div>
+  {% if has_roughs %}<div class="ab-note">
+    <div class="ab" role="group" aria-label="Compare rough and mix">
+      <button type="button" data-ab="rough" aria-pressed="false">Rough</button>
+      <button type="button" data-ab="mix" aria-pressed="true">Mix</button>
+    </div>
+    <p><strong>A/B it.</strong> Rough is the session as it arrived: unbalanced, dry, everything in the middle. Mix is after balance, EQ, glue compression, width and space.</p>
+  </div>{% endif %}
+  {% if not tracks_data %}<p class="empty">No tracks yet. Add one in the admin.</p>{% endif %}
+  <div class="sheet" role="list">
+    <div class="sheet-head" aria-hidden="true"><span></span><span>Song</span><span>Waveform</span><span>Genre</span><span>Length</span></div>
+    <div id="tracks"></div>
+  </div>
+  <div class="meter">
+    <span id="m-name">Stopped</span>
+    <div class="bar"><div class="fill" id="m-fill"></div></div>
+    <span id="m-db">−∞ dBFS</span>
+  </div>
+</section>
+{% endif %}

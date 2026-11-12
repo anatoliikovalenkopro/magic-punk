@@ -18,24 +18,28 @@ from django.test import Client
 
 ALL_PAGES = ['/', '/video/', '/music/', '/photo/', '/bio/']
 
-# Shown as a redirect to /music/ when the section is switched off in settings,
-# so old links (Google, Instagram bio) still land somewhere useful.
+# Written in place of a page that is switched off in settings, so old links
+# (Google, Instagram bio) still land somewhere useful.
 REDIRECT = '''<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>Magic Punk</title>
-<link rel="canonical" href="/music/">
-<meta http-equiv="refresh" content="0; url=/music/">
+<link rel="canonical" href="{to}">
+<meta http-equiv="refresh" content="0; url={to}">
 <meta name="robots" content="noindex">
-</head><body><p>This page moved to <a href="/music/">Music production</a>.</p></body></html>
+</head><body><p>This page moved to <a href="{to}">{to}</a>.</p></body></html>
 '''
 
 
 def hidden_pages():
-    hidden = []
+    """{url: where it redirects to} for pages switched off in settings."""
+    if not settings.SHOW_VIDEO and not settings.SHOW_PHOTO:
+        # music only: everything lives on the home page
+        return {'/video/': '/', '/photo/': '/', '/music/': '/#mixes'}
+    hidden = {}
     if not settings.SHOW_VIDEO:
-        hidden.append('/video/')
+        hidden['/video/'] = '/music/'
     if not settings.SHOW_PHOTO:
-        hidden.append('/photo/')
+        hidden['/photo/'] = '/music/'
     return hidden
 
 
@@ -63,11 +67,11 @@ class Command(BaseCommand):
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(response.content)
             self.stdout.write(f'  page   {url} -> {target.relative_to(out)}')
-        for url in hidden:
+        for url, to in hidden.items():
             target = out / url.strip('/') / 'index.html'
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(REDIRECT, encoding='utf-8')
-            self.stdout.write(f'  hidden {url} -> redirects to /music/')
+            target.write_text(REDIRECT.format(to=to), encoding='utf-8')
+            self.stdout.write(f'  hidden {url} -> redirects to {to}')
 
         # 2. Copy the site's own static files (CSS, JS, images)
         app_static = Path(__file__).resolve().parents[2] / 'static'

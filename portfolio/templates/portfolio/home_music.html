@@ -1,0 +1,41 @@
+{% extends "portfolio/base.html" %}
+{# Home page when only music is switched on (SHOW_VIDEO and SHOW_PHOTO are False): the whole site on one page #}
+
+{% block description %}Magic Punk by {{ owner_name }}: recording and mixing for bands and artists, from rock and punk to country and folk. In studios across Alberta, or online from anywhere. Hear recent mixes.{% endblock %}
+
+{% block content %}
+<header class="hero" id="top">
+  <div class="sticker">Now booking<br>winter ’26</div>
+  <div class="eyebrow">Record · Mix · Produce</div>
+  <h1 aria-label="Magic Punk"><span>Magic</span><span>Punk</span></h1>
+  <div class="row">
+    <p class="lede">Recording and mixing for bands and artists, from rock and punk to country and folk. In studios across Alberta, or online from anywhere.</p>
+    <div class="hero-cta">
+      {% if has_tracks %}<a class="btn primary" href="#mixes">Hear the mixes</a>{% endif %}
+      <a class="btn" href="#contact">Book a session</a>
+    </div>
+  </div>
+  <canvas class="scope" id="scope" aria-hidden="true"></canvas>
+</header>
+
+{% include "portfolio/_mixes.html" %}
+
+{% include "portfolio/_services_block.html" %}
+
+{% include "portfolio/_studios.html" %}
+
+{% include "portfolio/_about.html" %}
+
+<section class="block fit" aria-labelledby="fit-h">
+  <div class="fit-head">
+    <div class="eyebrow">Who I work with</div>
+    <h2 id="fit-h">Made for <em>live music</em></h2>
+    <p>Bands, duos and solo artists. I record and mix music that people play, in the studio or on stage.</p>
+  </div>
+  <p class="genre-line">Rock · Punk · Alternative · Metal · Indie · Country · Folk · Blues · Jazz · Singer&#8209;songwriters</p>
+</section>
+{% endblock %}
+
+{% block data %}
+{{ tracks_data|json_script:"tracks-data" }}
+{% endblock %}
