@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Magic Punk{% if owner_name %} · {{ owner_name }}{% endif %}{% endblock %}</title>
-  <meta name="description" content="{% block description %}Magic Punk by {{ owner_name }}: music videos, concert videos and photos, recording and mixing in Alberta.{% endblock %}">
+  <meta name="description" content="{% block description %}Magic Punk by {{ owner_name }}: producing, recording and mixing for bands and artists in Alberta and online.{% endblock %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Rubik+Wet+Paint&display=swap">
@@ -22,6 +22,7 @@
 
     {# Desktop: dropdown menus #}
     <nav class="menu" aria-label="Main">
+      {% if show_video %}
       <div class="dd{% if page == 'video' %} active{% endif %}">
         <a class="dd-top" href="{% url 'portfolio:video' %}">Video production <span aria-hidden="true">▾</span></a>
         <div class="dd-panel">
@@ -31,6 +32,7 @@
           {% endfor %}
         </div>
       </div>
+      {% endif %}
       <div class="dd{% if page == 'music' %} active{% endif %}">
         <a class="dd-top" href="{% url 'portfolio:music' %}">Music production <span aria-hidden="true">▾</span></a>
         <div class="dd-panel">
@@ -41,6 +43,7 @@
           {% endfor %}
         </div>
       </div>
+      {% if show_photo %}
       <div class="dd{% if page == 'photo' %} active{% endif %}">
         <a class="dd-top" href="{% url 'portfolio:photo' %}">Photography <span aria-hidden="true">▾</span></a>
         <div class="dd-panel">
@@ -50,6 +53,7 @@
           {% endfor %}
         </div>
       </div>
+      {% endif %}
       <a class="dd-top nav-link{% if page == 'bio' %} active{% endif %}" href="{% url 'portfolio:bio' %}">Bio</a>
       <a class="nav-cta" href="#contact">Contact</a>
     </nav>
@@ -58,12 +62,12 @@
     <details class="mobile-menu">
       <summary>Menu</summary>
       <div class="mm-panel">
-        <a class="mm-title" href="{% url 'portfolio:video' %}">Video production</a>
-        {% for s in nav_video %}<a href="{% url 'portfolio:video' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        {% if show_video %}<a class="mm-title" href="{% url 'portfolio:video' %}">Video production</a>
+        {% for s in nav_video %}<a href="{% url 'portfolio:video' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}{% endif %}
         <a class="mm-title" href="{% url 'portfolio:music' %}">Music production</a>
         {% for s in nav_music %}<a href="{% url 'portfolio:music' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
-        <a class="mm-title" href="{% url 'portfolio:photo' %}">Photography</a>
-        {% for s in nav_photo %}<a href="{% url 'portfolio:photo' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        {% if show_photo %}<a class="mm-title" href="{% url 'portfolio:photo' %}">Photography</a>
+        {% for s in nav_photo %}<a href="{% url 'portfolio:photo' %}#{{ s.slug }}">{{ s.name }}</a>{% endfor %}{% endif %}
         <a class="mm-title" href="{% url 'portfolio:bio' %}">Bio</a>
         <a class="mm-title" href="#contact">Contact</a>
       </div>
@@ -108,21 +112,21 @@
         <span>What do you need?</span>
         <select id="cf-service" name="service">
           <option value="">Choose a service</option>
-          <optgroup label="Video production">
+          {% if nav_video %}<optgroup label="Video production">
             {% for s in nav_video %}<option value="{{ s.name }}">{{ s.name }}</option>{% endfor %}
-          </optgroup>
-          <optgroup label="Music production">
+          </optgroup>{% endif %}
+          {% if nav_video or nav_photo %}<optgroup label="Music production">{% endif %}
             {% for s in nav_music %}<option value="{{ s.name }}">{{ s.name }}</option>{% endfor %}
-          </optgroup>
-          <optgroup label="Photography">
+          {% if nav_video or nav_photo %}</optgroup>{% endif %}
+          {% if nav_photo %}<optgroup label="Photography">
             {% for s in nav_photo %}<option value="{{ s.name }}">{{ s.name }}</option>{% endfor %}
-          </optgroup>
+          </optgroup>{% endif %}
           <option value="Not sure yet">Not sure yet</option>
         </select>
       </label>
       <div class="field-row">
         <label class="field">
-          <span>Link to your music or footage <small>(optional)</small></span>
+          <span>Link to your music{% if show_video %} or footage{% endif %} <small>(optional)</small></span>
           <input id="cf-link" name="link" type="url" placeholder="Spotify, YouTube, Dropbox…">
         </label>
         <label class="field">
@@ -145,7 +149,7 @@
 
   <footer>
     <span>© {% now "Y" %} Magic Punk{% if owner_name %} · {{ owner_name }}{% endif %}</span>
-    <span><a href="{% url 'portfolio:video' %}">Video production</a> · <a href="{% url 'portfolio:music' %}">Music production</a> · <a href="{% url 'portfolio:photo' %}">Photography</a> · <a href="{% url 'portfolio:bio' %}">Bio</a></span>
+    <span>{% if show_video %}<a href="{% url 'portfolio:video' %}">Video production</a> · {% endif %}<a href="{% url 'portfolio:music' %}">Music production</a> · {% if show_photo %}<a href="{% url 'portfolio:photo' %}">Photography</a> · {% endif %}<a href="{% url 'portfolio:bio' %}">Bio</a></span>
   </footer>
 </div>
 {% block data %}{% endblock %}

@@ -1,0 +1,4 @@
+-r requirements.txt
+# only for `manage.py import_tracks` (analysing loudness and waveforms)
+numpy
+pyloudnorm

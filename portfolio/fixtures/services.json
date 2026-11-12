@@ -47,7 +47,7 @@
     "name": "Mixing",
     "slug": "mixing",
     "mode": "both",
-    "summary": "Mixed in Pro Tools with UAD plugins: classic consoles, tape and vintage compressors that make guitars bite and drums hit. Sit in on the session with me, or send your stems from anywhere and review the mix on your own speakers.",
+    "summary": "Mixed in Pro Tools, Logic or Reaper with UAD, Waves, Soundtoys and FabFilter plugins: classic consoles, tape and vintage compressors that make guitars bite and drums hit. Sit in on the session with me, or send your stems from anywhere and review the mix on your own speakers.",
     "includes": "In-person or online mix sessions\nUp to 64 stems per song\n3 revision rounds by timestamped notes\nRough vs. mix comparison with every version\nMain, instrumental, a cappella, TV mix\nStem prints for live shows",
     "spec": "Send: 24-bit / 48 kHz WAV stems, all starting at bar 1",
     "price": 300,
@@ -57,26 +57,6 @@
     "price_note": "3 revision rounds and all alternate mixes included. EP of 4+ songs: 10% off.",
     "addons": "",
     "order": 3
-  }
-},
-{
-  "model": "portfolio.service",
-  "pk": 9,
-  "fields": {
-    "category": "music",
-    "name": "Mastering",
-    "slug": "mastering",
-    "mode": "referral",
-    "summary": "I don’t master my own mixes. A fresh pair of ears makes the record better, so I’ll connect you with a mastering engineer who suits your sound and budget.",
-    "includes": "Engineers I’ve worked with\nMixes prepped & sent for you\nNotes passed on between us",
-    "spec": "Ask about it when you book a mix",
-    "price": null,
-    "sale_price": null,
-    "price_unit": "",
-    "price_from": false,
-    "price_note": "Free referral. You pay the mastering engineer directly.",
-    "addons": "",
-    "order": 5
   }
 },
 {
@@ -121,26 +101,6 @@
 },
 {
   "model": "portfolio.service",
-  "pk": 13,
-  "fields": {
-    "category": "music",
-    "name": "Producer",
-    "slug": "producer",
-    "mode": "in_person",
-    "summary": "Your guide from the first idea to a finished record. I help you find your sound, shape the songs, choose the right studio, engineers and players, and keep the project on track until it’s out.",
-    "includes": "Finding your sound with reference tracks\nSong and arrangement feedback\nPicking studios, engineers and session players\nBudget and schedule for the whole project\nIn the room at every session\nRelease plan: mixing, mastering, artwork, video",
-    "spec": "The first 30-minute call is free",
-    "price": 60,
-    "sale_price": 45,
-    "price_unit": "per hour",
-    "price_from": true,
-    "price_note": "Studios, engineers and players are paid separately. I help you get fair rates.",
-    "addons": "",
-    "order": 0
-  }
-},
-{
-  "model": "portfolio.service",
   "pk": 14,
   "fields": {
     "category": "music",
@@ -148,7 +108,7 @@
     "slug": "recording",
     "mode": "in_person",
     "summary": "I record in partner studios across Alberta and book the room that fits your sound and budget: a big live room for drums, a small booth for vocals, or a rehearsal space for a raw live take.",
-    "includes": "Studio booking across Alberta\nFull-band live tracking\nVocals, guitars, bass, overdubs\nDrum recording & editing\nSessions delivered as Pro Tools sessions or stems",
+    "includes": "Studio booking across Alberta\nFull-band live tracking\nVocals, guitars, bass, overdubs\nDrum recording & editing\nSessions delivered for Pro Tools, Logic or Reaper, or as stems",
     "spec": "Records: 24-bit / 48 kHz · labeled, consolidated stems",
     "price": 65,
     "sale_price": 50,
@@ -216,48 +176,6 @@
     "price_from": false,
     "price_note": "Up to 3 hours. $80 when added to a recording or video booking.",
     "addons": "",
-    "order": 3
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 13,
-  "fields": {
-    "service": 13,
-    "name": "Guidance",
-    "tagline": "Pay by the hour",
-    "includes": "Calls or meetings when you need them\nFeedback on songs and demos\nAdvice on studios, people and budget",
-    "price": 60,
-    "sale_price": 45,
-    "featured": false,
-    "order": 1
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 14,
-  "fields": {
-    "service": 13,
-    "name": "Single",
-    "tagline": "1 song, start to finish",
-    "includes": "Sound and arrangement plan\nStudio and team booked\nProducing every session\nMix and master overseen",
-    "price": 450,
-    "sale_price": 350,
-    "featured": true,
-    "order": 2
-  }
-},
-{
-  "model": "portfolio.package",
-  "pk": 15,
-  "fields": {
-    "service": 13,
-    "name": "EP",
-    "tagline": "Up to 5 songs",
-    "includes": "One sound across the whole EP\nFull project plan and budget\nProducing every session\nRelease plan included",
-    "price": 1800,
-    "sale_price": 1350,
-    "featured": false,
     "order": 3
   }
 },

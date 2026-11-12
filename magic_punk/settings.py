@@ -156,6 +156,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 SPECIAL_LABEL = 'Launch special'
 SPECIAL_NOTE = 'Lower prices on every service while I build the roster. Book now to lock them in.'
 
+# Which sections the site shows. Hidden sections drop out of the menu, home page, contact form
+# and `manage.py build` (their old links redirect to /music/). Set True to bring one back.
+SHOW_VIDEO = False
+SHOW_PHOTO = False
+
 # Your real name, shown in the About section and contact block. Leave '' to hide it.
 OWNER_NAME = 'Anatolii Kovalenko'
 

@@ -286,8 +286,10 @@ function playTrack(i) {
   const tr = TRACKS[i];
   if (tr.mix) {
     // real files: run mix + rough in sync, crossfade with the A/B switch
-    const mk = (url, out) => { if (!url) return null; const a = new Audio(url); a.crossOrigin = "anonymous"; a.loop = true; ctx.createMediaElementSource(a).connect(out); return a; };
-    const m = mk(tr.mix, mixOut), r = mk(tr.rough, roughOut);
+    const mk = (url, out) => { if (!url) return null; const a = new Audio(url); a.crossOrigin = "anonymous"; a.preload = "auto"; ctx.createMediaElementSource(a).connect(out); return a; };
+    // a song without a rough skips the A/B crossfade, so "Rough" can never mute it
+    const m = mk(tr.mix, tr.rough ? mixOut : master), r = mk(tr.rough, roughOut);
+    m.addEventListener("ended", () => { if (playing === i) stopTrack(); });
     mediaPair = [m, r]; mediaPair.forEach(a => a && a.play().catch(() => {}));
   } else {
     timer = setInterval(scheduler, 25); scheduler();
@@ -296,16 +298,17 @@ function playTrack(i) {
 }
 
 const tracksEl = document.getElementById("tracks");
-const waveData = TRACKS.map((tr, i) => { const R = rng(i * 7919 + tr.bpm); return Array.from({ length: 72 }, (_, k) => { const env = .45 + .55 * Math.sin(Math.PI * Math.min(1, (k + 4) / 76)); return Math.max(.12, env * (.55 + R() * .45)); }); });
+const waveData = TRACKS.map((tr, i) => { if (tr.peaks && tr.peaks.length) return tr.peaks.map(v => Math.max(.06, v)); const R = rng(i * 7919 + tr.bpm); return Array.from({ length: 72 }, (_, k) => { const env = .45 + .55 * Math.sin(Math.PI * Math.min(1, (k + 4) / 76)); return Math.max(.12, env * (.55 + R() * .45)); }); });
 if (tracksEl) TRACKS.forEach((tr, i) => {
   const row = document.createElement("div"); row.className = "track"; row.setAttribute("role", "listitem");
   row.innerHTML = `
     <button class="play" type="button"></button>
     <div><div class="t"></div><div class="a"></div><div class="role"></div></div>
     <div class="wave-cell"><canvas class="wave" aria-hidden="true"></canvas></div>
-    <div class="num"><small class="label-sm">BPM</small>${tr.bpm}</div>
-    <div class="num"><small class="label-sm">Key</small>${tr.key}</div>
-    <div class="num"><small class="label-sm">LUFS</small>${tr.lufs}</div>`;
+    <div class="num"><small class="label-sm">Genre</small><span class="n-genre"></span></div>
+    <div class="num"><small class="label-sm">Length</small><span class="n-len"></span></div>`;
+  row.querySelector(".n-genre").textContent = tr.genre || "—";
+  row.querySelector(".n-len").textContent = tr.duration || "—";
   row.querySelector(".t").textContent = tr.title;
   row.querySelector(".a").textContent = tr.artist;
   row.querySelector(".role").textContent = tr.role;
@@ -313,7 +316,9 @@ if (tracksEl) TRACKS.forEach((tr, i) => {
   row.querySelector(".wave").addEventListener("click", e => {
     const r = e.currentTarget.getBoundingClientRect(), p = (e.clientX - r.left) / r.width;
     if (playing !== i) playTrack(i);
-    if (mediaPair) mediaPair.forEach(a => a && a.duration && (a.currentTime = p * a.duration));
+    // a track that just started doesn't know its length yet: jump once it does
+    const seek = a => { a.currentTime = p * a.duration; };
+    if (mediaPair) mediaPair.forEach(a => a && (a.duration ? seek(a) : a.addEventListener("loadedmetadata", () => seek(a), { once: true })));
     else step = Math.floor(p * 64) % 64;
   });
   tracksEl.appendChild(row);
@@ -328,6 +333,7 @@ function renderTrackState() {
   document.getElementById("m-name").textContent = playing < 0 ? "Stopped" : `${TRACKS[playing].title} · ${abMode === "mix" ? "Mix" : "Rough"}`;
 }
 document.querySelectorAll(".ab button").forEach(b => b.addEventListener("click", renderTrackState));
+renderTrackState();  // draw the play icons
 function trackProgress(i) {
   if (i !== playing) return 0;
   if (mediaPair && mediaPair[0] && mediaPair[0].duration) return mediaPair[0].currentTime / mediaPair[0].duration;

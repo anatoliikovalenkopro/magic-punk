@@ -19,9 +19,11 @@ def site(request):
     """Data every page needs: the header menus and the contact block."""
     services = list(Service.objects.all())
     return {
-        'nav_video': [s for s in services if s.category == 'video'],
+        'show_video': settings.SHOW_VIDEO,
+        'show_photo': settings.SHOW_PHOTO,
+        'nav_video': [s for s in services if s.category == 'video'] if settings.SHOW_VIDEO else [],
         'nav_music': [s for s in services if s.category == 'music'],
-        'nav_photo': [s for s in services if s.category == 'photo'],
+        'nav_photo': [s for s in services if s.category == 'photo'] if settings.SHOW_PHOTO else [],
         'has_tracks': Track.objects.exists(),  # hides the mixes player until a real song is added
         'css_version': _version('css/style.css'),
         'js_version': _version('js/main.js'),

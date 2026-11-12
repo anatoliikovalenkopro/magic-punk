@@ -133,15 +133,20 @@ class Track(models.Model):
     ]
 
     title = models.CharField(max_length=120)
-    artist = models.CharField(max_length=120)
+    artist = models.CharField(max_length=120, blank=True)
+    genre = models.CharField(max_length=40, blank=True, help_text='e.g. R&B, Jazz, Rock')
     role = models.CharField(max_length=120, help_text='What you did, e.g. "Record · Mix"')
-    bpm = models.PositiveIntegerField()
-    key = models.CharField(max_length=20, help_text='e.g. E minor')
-    lufs = models.CharField(max_length=10, help_text='Integrated loudness, e.g. −9.2')
+    bpm = models.PositiveIntegerField(null=True, blank=True)
+    key = models.CharField(max_length=20, blank=True, help_text='e.g. E minor')
+    lufs = models.CharField(max_length=10, blank=True,
+                            help_text='Integrated loudness, e.g. −9.2. Filled in by manage.py import_tracks')
+    duration = models.CharField(max_length=8, blank=True, help_text='e.g. 3:42. Filled in by manage.py import_tracks')
+    peaks = models.TextField(blank=True, editable=False,
+                             help_text='Waveform shape (JSON list of 0–1 values), made by manage.py import_tracks')
     mix_file = models.FileField(upload_to='audio/', blank=True, help_text='Final mix (mp3/wav)')
     rough_file = models.FileField(upload_to='audio/', blank=True, help_text='Rough / unmixed version for the A/B switch')
     # Only used for the synthesized demo when there are no audio files yet
-    root_note = models.PositiveIntegerField(default=40, help_text='Demo loop root as a MIDI note (40 = E2)')
+    root_note = models.PositiveIntegerField(default=40, help_text='Demo loop root as a MIDI note (40 = E2)')  # demo only
     mode = models.CharField(max_length=5, choices=MODE_CHOICES, default='minor')
     groove = models.CharField(max_length=5, choices=GROOVE_CHOICES, default='punk')
     order = models.PositiveIntegerField(default=0)
@@ -150,4 +155,4 @@ class Track(models.Model):
         ordering = ['order']
 
     def __str__(self):
-        return f'{self.artist} — {self.title}'
+        return f'{self.artist} — {self.title}' if self.artist else self.title

@@ -141,7 +141,7 @@ h2 em { font-style: normal; color: var(--spell); }
 .ab button[aria-pressed="true"] { background: var(--bone); color: var(--ink); }
 .ab button[data-ab="mix"][aria-pressed="true"] { background: var(--spell); }
 .sheet { border-top: 2px solid var(--bone); }
-.sheet-head, .track { display: grid; grid-template-columns: 56px minmax(0, 1.3fr) minmax(0, 2fr) 70px 80px 74px; gap: 18px; align-items: center; }
+.sheet-head, .track { display: grid; grid-template-columns: 56px minmax(0, 1.3fr) minmax(0, 2fr) 96px 64px; gap: 18px; align-items: center; }
 .sheet-head { font: 500 11px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--dim); padding: 12px 0; border-bottom: 1px solid var(--line); }
 .track { padding: 16px 0; border-bottom: 1px solid var(--line); }
 .track .play { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--bone); background: transparent; display: grid; place-items: center; }
@@ -152,7 +152,7 @@ h2 em { font-style: normal; color: var(--spell); }
 .wave { width: 100%; height: 44px; display: block; cursor: pointer; }
 .num { font: 13px/1.3 var(--f-mono); font-variant-numeric: tabular-nums; }
 .num small { display: block; color: var(--dim); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
-.label-sm { display: none; }
+.label-sm, .num .label-sm { display: none; }
 .meter { display: flex; align-items: center; gap: 14px; margin-top: 18px; font: 12px/1 var(--f-mono); color: var(--dim); font-variant-numeric: tabular-nums; }
 .meter .bar { flex: 1; height: 6px; background: var(--ink-3); position: relative; overflow: hidden; max-width: 420px; }
 .meter .fill { position: absolute; inset: 0 auto 0 0; width: 0; background: linear-gradient(90deg, var(--spell) 0 75%, var(--sulfur) 75%); }
@@ -176,6 +176,15 @@ h2 em { font-style: normal; color: var(--spell); }
 .door ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .door li { display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
 .door .btn { align-self: flex-start; margin-top: auto; }
+.door-note { margin: 0; color: var(--dim); font-size: 15px; }
+.door-price { margin-left: auto; font: 500 14px/1 var(--f-mono); white-space: nowrap; color: var(--bone); }
+.door-price s { color: var(--dim); margin-right: 4px; }
+.door-price small { color: var(--dim); font-size: 11px; }
+/* home with only the music door: one wide panel, art beside the list */
+.doors.single { grid-template-columns: minmax(0, 1fr); }
+.doors.single .door { flex-direction: row; }
+.doors.single .door-art { width: 46%; aspect-ratio: auto; min-height: 320px; border-bottom: 0; border-right: 2px solid var(--bone); }
+.doors.single .door-body { padding: 32px; }
 
 /* service rows */
 .svc-list { border-top: 2px solid var(--bone); }
@@ -414,6 +423,9 @@ h2 { font-size: clamp(32px, 5vw, 60px); }
   .menu { display: none; }
   .mobile-menu { display: block; }
   .doors { grid-template-columns: minmax(0, 1fr); }
+  .doors.single .door { flex-direction: column; }
+  .doors.single .door-art { width: 100%; min-height: 0; aspect-ratio: 16 / 7; border-right: 0; border-bottom: 2px solid var(--bone); }
+  .doors.single .door-body { padding: 24px; }
   .svc-row { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .how, .fit-grid, .brief, .packages, .svc-inc, .about, .contact, .field-row { grid-template-columns: minmax(0, 1fr); }
   .svc-row { grid-template-columns: minmax(0, 1fr); }
@@ -429,7 +441,7 @@ h2 { font-size: clamp(32px, 5vw, 60px); }
   .track { grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 10px 14px; }
   .track .wave-cell { grid-column: 1 / -1; order: 5; }
   .track .num { order: 6; }
-  .label-sm { display: block; }
+  .label-sm, .num .label-sm { display: block; }
   .sticker { position: static; display: inline-block; margin-bottom: 8px; transform: rotate(-3deg); }
   .hero .row { grid-template-columns: minmax(0, 1fr); }
 }

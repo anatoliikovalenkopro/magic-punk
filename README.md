@@ -1,6 +1,9 @@
 # Magic Punk
 
-Portfolio site for music videos, recording and mixing. Built with Django.
+Music production site: producing, recording and mixing, with a player for recent mixes. Built with Django.
+
+Video and Photography are switched off (`SHOW_VIDEO` / `SHOW_PHOTO` in `magic_punk/settings.py`);
+their code is still here, set either to `True` to bring a section back.
 
 http://magicpunkstudio.com/
 
@@ -39,7 +42,7 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py loaddata sample_data services
+python manage.py loaddata sample_data services tracks
 python manage.py createsuperuser
 ```
 
@@ -55,6 +58,20 @@ python manage.py createsuperuser
    **Rough file** so visitors can A/B them.
 
 Contact email and social links are at the bottom of `magic_punk/settings.py`.
+
+## Add mixed tracks
+
+Put the files (wav, mp3, m4a…) in a folder, e.g. `audio/` (ignored by git), then:
+
+```
+pip install -r requirements-dev.txt          # once
+python manage.py import_tracks audio
+python manage.py dumpdata portfolio.Track --indent 2 -o portfolio/fixtures/tracks.json
+python manage.py build
+```
+
+WAVs are converted to AAC so they load fast; loudness, length and waveform are measured
+automatically (needs macOS for `afconvert`). Rename tracks or set genre/artist at /admin.
 
 ## Going live on magicpunkstudio.com
 

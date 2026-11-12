@@ -32,5 +32,5 @@ class VideoAdmin(admin.ModelAdmin):
 
 @admin.register(Track)
 class TrackAdmin(admin.ModelAdmin):
-    list_display = ['title', 'artist', 'bpm', 'key', 'order']
+    list_display = ['title', 'artist', 'genre', 'duration', 'order']
     list_editable = ['order']
