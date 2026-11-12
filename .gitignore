@@ -5,9 +5,9 @@ __pycache__/
 
 # Local data (your content is backed up in portfolio/fixtures/*.json)
 db.sqlite3
-media/
+/media/
 # your original masters (web copies go to media/ via manage.py import_tracks)
-audio/
+/audio/
 staticfiles/
 
 # Secrets and local settings
